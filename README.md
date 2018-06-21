@@ -11,4 +11,4 @@ This paper is a work in progress and is meant to be a collaborative, community e
 ##  Contribution Guidelines
 1. Ensure you push both the latex files and the most recent pdf format
 2. Ensure you follow the latex formatting. When making a PR remember to finish your citations, fix your grammar, define vocabulary that you use in advance. 
-3. Have fun discussing your ideas with other people on our telegram:  https://t.me/joinchat/AAAAAFITVdmFOUgVNuFaGg
+3. Have fun discussing your ideas with other people on our telegram:  https://t.me/joinchat/GcpOPw-JcdUOGBum6ZNy7A
