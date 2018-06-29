@@ -1,0 +1,165 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{glossaries}
+ 
+ 
+\title{Reference of Terms}
+\author{\huge{Mechanism Labs}\\\small{mechanismlabs.io}}
+\date{ Summer 2018}
+\makeglossaries
+
+\begin{document}
+\maketitle
+
+\addtolength{\oddsidemargin}{-.47in}
+\addtolength{\evensidemargin}{-.47in}
+\addtolength{\textwidth}{.95in}
+\addtolength{\topmargin}{-.95in}
+\addtolength{\textheight}{.95in}
+
+\newglossaryentry{AdaptiveAdversary}{
+    name=Adaptive Adversary, 
+    description={An adversarial model in which an adversary has the ability to control nodes and change which nodes they control to maximize their likelihood of impeding network function; that is, they adapt their corruptions as circumstances change \cite{mahdiz}}
+}
+
+\newglossaryentry{Asynchrony}
+{
+    name=Asynchrony,
+    description={In asynchrony, messages sent by parties may be arbitrarily delayed and no bound is assumed on the amount of time that it takes for the messages to be delivered. However, to show that the protocol terminates after some finite amount of time, all messages are often assumed to be delivered eventually after some bounded but unknown amount of time. Some asynchronous protocols make the extra assumption of some synchronization point in the course of the protocol run \cite{mahdiz}}
+}
+
+\newglossaryentry{Byzantine Failures}
+{
+    name=Byzantine Failure/Fault,
+    description={A failure model in the distributed systems literature by which a node can generate messages and change state arbitrarily, without necessarily following the rules specified by the protocol. This arbitrary behavior includes explicit attacks on the protocol. \cite{lynch}}
+}
+
+\newglossaryentry{Full Synchrony}
+{
+    name=Full Synchrony,
+    description={This model assumes that there is a known upper bound on message delay and all messages are received in the exact linear ordering in which they were sent. This assumption is often considered to be unrealistic in practice since it assumes the existence of a global synchronization clock which is extremely hard (practically infeasible) to have in a distributed system. Full synchrony allows algorithms to operate in rounds, since this upper bound on message transmission exists \cite{mahdiz}}
+}
+
+ \newglossaryentry{NetworkPartition}
+{
+    name=Network Partition,
+    description={In the distributed systems literature, this constitutes a period of time in which all messages passing links connecting a node or a super set of nodes and the rest of the the nodes have been severed. In the cryptographic literature, this constitutes a period of time when the adversary has complete control on message delivery and messages may be delayed arbitrarily long \cite{AttiyaWelch}}
+}
+ \newglossaryentry{Notarization}
+{
+    name=Notarization,
+    description={In Dfinity, this refers to threshold signature from majority of nodes under a block created jointly by registered clients \cite{Dfinity}}
+}
+ \newglossaryentry{OptimisticMode}
+{
+    name=Optimistic Mode,
+    description={These refer to ideal conditions specified for a protocol in which some special behavior is achieved. For example, this mode defined in Thunderella in which a super majority of the committee (3/4) are honest and the leader is honest. \cite{thunderella}}
+}
+
+\newglossaryentry{PartialSynchrony}
+{
+    name=Partial Synchrony,
+    description={This model assumes the existence of an upper bound on messages transmission delays or the relative speed of process execution, but this upper bound is not known a priori to any nodes in the protocol. This model assumes that the messages sent are received by their recipients within some fixed time bound. In other words, while the messages may be delayed arbitrarily, they are guaranteed to be delivered within the time bound. \cite{mahdiz}}
+}
+
+ \newglossaryentry{PosteriorCorruptions}
+{
+    name=Posterior Corruptions,
+    description={This refers to an event where the set of users possibly holding majority of stake sometime in past, would sell their stake at some point and from that point onwards, they might be incentivized to act maliciously (eg. fork and double spend old money) \cite{thunderella}}
+}
+
+\newglossaryentry{MildyAdaptiveAdversary}{
+    name=Mildly Adaptive Adversary, 
+    description={%The degree of adaptiveness of an adversary is defined based on two parameters - Information Available and Time taken to corrupt messages. An adversary can be described as mildly available if i) Information Available: the adversary can corrupt parties only based on past messages, and cannot alter messages already sent and ii) Time: the adversary may adaptively corrupt groups but this corruption takes longer than the activity period of the group adversary may adaptively corrupt groups but this corruption is not instantaneous and takes some am. %
+    It takes the adversary at least $t$ rounds to corrupt an honest node, where $t$ is referred to as the agility parameter. If $0 < t < \infty$  then the adversary is called mildly adaptive \cite{thunderella}}
+}
+
+\newglossaryentry{Erasure}{
+        name={Erasure},
+    description={This is a cryptographic assumption that strengthens honest parties. In this model, there is a way for an honest party to untraceably erase memory contents \cite{Erasures}. This may mitigate the problem of weak subjectivity in Proof of Stake}
+}
+
+\newglossaryentry{Predictable}{
+    name={Predictable},
+    description={In this model, you may or may not have access to have input but you can find out output, More precisely, for all $i$ no efficient algorithm can predict the $i + 1$ bit for non-negligible value more than half \cite{boneh}}
+}
+
+\newglossaryentry{RandomOracleModel}{
+    name={Random Oracle Model},
+    description={This is a security proof framework
+    where one provides all parties, good and bad alike, with access to a (public) random oracle; prove correct a protocol in this model; then replace the random oracle by an object like a hash function \cite{ROM}
+    %in which a cryptographic hash function is replaced with a truly random function - typically used when cryptographic hash functions cannot be proven to possess the mathematical properties required by the proof - specifically where strong randomness assumptions are needed of the hash function’s output and generally shows that a protocol is secure by showing that an attacker must require impossible behavior from he oracle or solve some very difficult mathematical problem in order to break it% 
+    }
+}
+
+\newglossaryentry{Robust Committee Reconfiguration}{
+    name={Robust Committee Reconfiguration},
+    description={This means that committees in Thunderella are chosen such that each remains honest (not necessarily online) until the honest chains are roughly the clock time for the current txn $+ 4 *$ security parameter $(c + 4k)$, since notarization transactions are only considered legitimate if included in the blockchain by length $(c + 2k)$. $k$ is the security parameter \cite{thunderella}}
+}
+
+\newglossaryentry{SemiSynchronous} 
+{   name=Semi Synchrony, 
+    description={This is an assumption on the existence of an upper bound not known a priori, however the distribution, variance and other statistical information about the upper bound is known \cite{Dfinity}}
+}
+
+\newglossaryentry{StaticAdversary}{
+    name={Static Adversary},
+    description={This implies that the adversary chooses which players to corrupt before protocol begins. (It first chooses all nodes, after which the randomness of nodes are "set" or perfectly predicted by the adversary). The adversary is restricted to choose its set of dishonest parties at the start of the protocol and cannot change this set later on \cite{mahdiz}}
+}
+
+\newglossaryentry{StronglyAdaptive}{
+    name=Strongly Adaptive,
+    description={%In this model, an adversary sees all messages sent by honest parties in any given round and, based on the message content, decides whether to corrupt a party (and alter its message or sabotage its delivery) or not. It is able to instantaneously corrupt nodes as well
+    It takes the adversary $t$ rounds to corrupt an honest node, where $t$ is referred to as the agility parameter. If $t = 0$  then the adversary is called strongly adaptive \cite{thunderella}
+    }
+}
+
+\newglossaryentry{Threshold Relay}{
+    name={Threshold Relay},
+    description={This is the technique that Dfinity uses to randomly sample nodes into groups, set the groups up for threshold operation, chooses the current committee, and relay from one committee to the next is called threshold relay. \cite{Dfinity}}
+}
+
+\newglossaryentry{VRF}{
+    name={VRF},
+    description={A verifiable random function is a psuedo-random function where each output is unpredictable given the knowledge of all prior outputs. Each output has publicly verifiable proofs of output correctness. \cite{VRFs}}
+}
+
+\glsaddall
+
+\printglossary[nonumberlist]
+
+
+\begin{thebibliography}{999}
+
+\bibitem{AttiyaWelch} H. Attiya and J. Welch. \emph{Distributed Computing: Fundamentals, Simulations, and Advanced Topics.} Hoboken, NJ: Wiley, 2004.
+
+\bibitem{Dfinity}  T. Hanke, M. Mohavedi, D. Williams, DFINITY Technology Overview Series: Consensus System, DFINITY Stiftung, 2017.
+
+\bibitem{lynch} N. Lynch, \emph{Distributed Algorithms}. Butterworth-Heinemann, 1 Mar. 1996.
+
+
+\bibitem{mahdiz} M. Zamadi, M. Mohavedi, "Crypto Reference." url: mahdiz.com/ crypto/basics/
+
+\bibitem{boneh} D. Wu, "CS 255 (INTRODUCTION TO CRYPTOGRAPHY" url:  https://crypto.stanford.edu/~dwu4/notes/CS255LectureNotes.pdf
+
+\bibitem{thunderella} R. Pass and E. Shi, "Thunderella," Cornell: 2017.
+
+\bibitem{VRFs}S. Micali, M. Rabin, S. Vadhan, \emph{Verifiable random functions.}
+In 40th Annual Symposium on Foundations of Computer Science, pages 120–130,
+New York, NY, USA, October 17–19, 1999. IEEE Computer Society Press.
+
+\bibitem{Erasures} T-H. Chan, R. Pass and E.Shi, "Communication-Efficient Byzantine Agreement without Erasures," 2018
+
+\bibitem{ROM} M. Bellare and P. Rogaway "Random Oracles are Practical: A Paradigm for Designing Efficient Protocols". ACM Conference on Computer and Communications Security: 62–73 (1993).
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+\thebibliography
+
+
+\end{document}
