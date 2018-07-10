@@ -205,7 +205,7 @@
 % does. amsmath.sty is already installed on most LaTeX systems. The latest
 % version and documentation can be obtained at:
 % http://www.ctan.org/pkg/amsmath
-
+\usepackage{amsfonts}
 
 
 
@@ -558,13 +558,13 @@ pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
         Aparna~Krishnan,~\IEEEmembership{}
         Zubin~Koticha,~\IEEEmembership{}
         Maaz~Uddin,~\IEEEmembership{}
-        Mahnush~Movahedi~\IEEEmembership{}% <-this % stops a space
-\IEEEcompsocitemizethanks{\protect\\
-% note need leading \protect in front of \\ to get a newline within \thanks as
-% \\ is fragile and will error, could use \hfil\break instead.
-}% <-this % stops a space
-
-\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
+        Mahnush~Movahedi~\IEEEmembership{}}% <-this % stops a space
+        
+%\IEEEcompsocitemizethanks{\protect\hfil\break
+%% note need leading \protect in front of \\ to get a newline within \thanks as
+%% \\ is fragile and will error, could use \hfil\break instead.
+%}% <-this % stops a space
+%\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}
 
 % note the % following the last \IEEEmembership and also \thanks - 
 % these prevent an unwanted space from occurring between the last author name
@@ -627,7 +627,7 @@ pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Blockchain technology has been gaining popularity in the public, in industry, and in academia. However, these systems are currently limited in their ability to support robust, large-scale applications due to scalability and security challenges \cite{CromanEtAl}. A fundamental step to resolving some of these challenges lies in the blockchain consensus layer. As such, both industry and academia are heavily investing in alternative consensus research and development, seeking alternatives to Bitcoin's Nakamoto consensus. Many of these protocols favor Proof of Stake (PoS) as a sybil control mechanism to today's Proof of Work (PoW) \cite{EthPoSFAQ}. However, thus far there has been no comprehensive, rigorous comparison of these alternative consensus protocols. This paper presents the first systematization of knowledge within these major blockchain protocols, understanding the common challenges and solutions, and providing a formal structure within which to compare them. We break down these protocols by network, adversarial, and economic model, deeply understanding the common challenges of choosing proposers and committees, propogation, and finality. 
+Blockchain technology has been gaining popularity in the public, in industry, and in academia. However, these systems are currently limited in their ability to support robust, large-scale applications due to scalability and security challenges \cite{CromanEtAl}. A fundamental step to resolving some of these challenges lies in the blockchain consensus layer. As such, both industry and academia are heavily investing in alternative consensus research and development, seeking alternatives to Bitcoin's Nakamoto consensus. Many of these protocols favor Proof of Stake (PoS) as a sybil control mechanism to today's Proof of Work (PoW) \cite{EthPoSFAQ}. However, thus far there has been no comprehensive, rigorous comparison of these alternative consensus protocols. This paper presents the first systematization of knowledge within these major blockchain protocols, understanding the common challenges and solutions, and providing a formal structure within which to compare them. We break down these protocols by network, adversarial, and economic model, deeply understanding the common challenges of choosing proposers and committees, propagation, and finality. 
 \end{abstract}
 
 % Note that keywords are not normally used for peer review papers.
@@ -740,10 +740,10 @@ There are two major categories of PoS protocols: chain-based and BFT-style \cite
 
 \subsection{Model}
 
-\begin{table*}[htdp]
+\begin{table*}[htp]
  \caption{Model}
 \label{}
-\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
+\begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
 \toprule
                  & Tendermint & Thunderella & Algorand & Dfinity & Ouroboros G. & Casper FFG & Casper TFG\\ 
 \midrule
@@ -922,7 +922,7 @@ This scheme proceeds as follows:
 \\
 When any validator receives at least $t$ valid signatures, she can recover the randomness for that round by running the threshold recovery algorithm. The random beacon output in one round chooses the committee for the next round according to a threshold relay technique, which is the process of randomly sampling validators into groups, setting the groups up for threshold operation, choosing the current committee, and relaying from one committee to the next.
 The sub-committee size is chosen based on the equation below:
-$Pr[G \; honest] \geq CDF_{binom}(\left \lceil{n/2} \rceil \right-1,n,\frac{1}{\beta})$ where 1/$\beta$ is the adversarial strength.
+$Pr[G \; honest] \geq CDF_{binom}(\left \lceil{n/2} \rceil -1,n,\frac{1}{\beta}\right)$ where 1/$\beta$ is the adversarial strength.
 \\
 The threshold relay is used to split validators into multiple groups. One of the $\alpha$ groups each of size $z$ is chosen as the committee for beacon protocols and notarizations in that round. The committee for the beacon protocol is responsible for generating randomness for round $r$ + 1 and the notarization committee runs the protocol. 
 
@@ -1021,10 +1021,10 @@ TFG handles validator-set rotation with dynamically changing sets of consensus f
 
 \section{Security of randomness of different schemes}
 
-\begin{table*}[htdp]
+\begin{table*}[htp]
  \caption{Security of Randomness Model}
 \label{}
-\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
+\begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
 \toprule
                  & Tendermint & Thunderella & Algorand & Dfinity & Ouoroboros Genesis  & Caspser FFG & Casper TFG   \\ 
 \midrule
@@ -1066,7 +1066,7 @@ The VRF proof $\pi$ and the seed for round $r$ are contained in the block accept
 When the network is not strongly synchronous, the attacker has complete control over the message passing links, and can therefore drop block proposals and force users to agree on empty blocks, such that future selection seeds can be computed. Algorand thus requires the \emph{weak synchrony} assumption that in every period of length $u$, there must be a strongly synchronous period $s$ of length $s < u$ for the protocol to be bias resistant.  As long as $s$ is suitably large enough that at least one honest block was produced in a time period of $b$, an adversary $v'$ choosing a key $sk_{v'}$ cannot bias the randomness seed for round $r$. 
 
 \subsubsection{Dfinity}
-In several protocols adversaries usually abort the protocol to invoke the fall back mechanism, and thus introduce bias. The threshold scheme that Dfinity uses is bias resistant because the threshold is chosen in a way that ensures an adversary cannot abort the protocol by preventing a \emp{threshold signature} from which the randomness seed is derived from being created. This requires $t$ the threshold to be chosen according to the equation: 
+In several protocols adversaries usually abort the protocol to invoke the fall back mechanism, and thus introduce bias. The threshold scheme that Dfinity uses is bias resistant because the threshold is chosen in a way that ensures an adversary cannot abort the protocol by preventing a \emph{threshold signature} from which the randomness seed is derived from being created. This requires $t$ the threshold to be chosen according to the equation: 
 $t \in [f+1, n-f]$ where f is the amount of signatures the adversary controls,  
 $n$ is the total signatures in the scheme and $t$ the threshold of signatures required to generate randomness. This threshold is chosen to ensure that an adversary cannot predict the outcome of creation of a signature nor can the adversary prevent its creation. 
 \\\\
@@ -1127,10 +1127,10 @@ Casper TFG is still figuring out its source of randomness.
 \section{Results and Analysis}
 Here we present the results provided by these different protocols and an analysis of such. Both in theory, and in practice, the aforementioned protocols will differ in their performance and in their ability to scale to more users and validators. We focus on finalization guarantees, scalability, a comparison of handling churn, and behavior in the case of a network partition.
 
-\begin{table*}[htdp]
+\begin{table*}[htp]
  \caption{Results}
 \label{}
-\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
+\begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
 \toprule
                  & Tendermint & Thunderella & Algorand & Dfinity & Ouroboros Genesis  & Caspser FFG & Casper TFG   \\ 
 \midrule
