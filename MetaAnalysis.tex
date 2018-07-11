@@ -448,7 +448,7 @@
 % See the thumbpdf docs for details. The latest version and documentation
 % can be obtained at.
 % http://www.ctan.org/pkg/thumbpdf
-
+\usepackage{cleveref}
 
 % NOTE: PDF hyperlink and bookmark features are not required in IEEE
 %       papers and their use requires extra complexity and work.
@@ -511,6 +511,7 @@ pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
 \usepackage[draft]{todonotes}
 \newcommand\note[1]{\todo[inline]{\textbf{TODO:} #1}}
 \newcommand\alberto[1]{\todo[color=yellow,inline]{\textbf{Alberto:} #1}}
+\newcommand\aparna[1]{\todo[color=green,inline]{\textbf{Aparna:} #1}}
 
 
 % *** Do not adjust lengths that control margins, column widths, etc. ***
@@ -697,32 +698,35 @@ Consensus, Blockchain, Cryptoeconomics, Distributed Systems, Cryptography, Econo
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\alberto{If you wish I can add sections about S-BAC and Avalanche.}
-\alberto{What about splitting this big latex file in one file per chapter (to make merge conflicts easier to solve)?}
-\alberto{What is the page limit?}
-\IEEEPARstart {B}{lockchain} technology presents groundbreaking innovation, calling into question long established paradigms in distributed systems computing and financial theory, and providing a novel platform for decentralized internet applications. In particular, cryptocurrencies (like Bitcoin~\cite{bitcoin} and Ethereum~\cite{ethereum}) have gained attention for some distinct benefits they offer over fiat currency including increased transparency and resilience to attack among other parameters \cite{BitcoinFAQ}. The transactions of these currencies are backed by distributed ledgers that are implemented by data structures known as blockchains. \emph{Blockchain} here refers to "a decentralized, replicated, immutable and tamper-evident log" \cite{Bano}. Crucially, "data on the blockchain cannot be deleted, and anyone can read data from the blockchain and verify its correctness" \cite{Bano}. Blockchains are composed of \emph{blocks}, which are structures containing transactions. Further, a vital aspect of blockchains, at least in Nakaomto's initial instantiation, is \emph{permissionless consensus}, where "anyone can join (or leave) the protocol execution (without getting permission from a centralized or distributed authority), and the protocol instructions do not depend on the identities of the players" \cite{fruitchains}.
+
+\alberto{@all, If you wish I can add sections about S-BAC and Avalanche.}
+\alberto{@all, Is that ok if I split this big latex file into one file per chapter (to make merge conflicts easier to solve)?}
+\alberto{@all, What is the page limit / deadline?}
+
+\IEEEPARstart {B}{lockchain} technology presents groundbreaking innovation, calling into question long established paradigms in distributed systems computing and financial theory, and providing a novel platform for decentralized internet applications. In particular, cryptocurrencies (like Bitcoin~\cite{Bitcoin} and Ethereum~\cite{Ethereum}) have gained attention for some distinct benefits they offer over fiat currency including increased transparency and resilience to attack among other parameters \cite{BitcoinFAQ}. The transactions of these currencies are backed by distributed ledgers that are implemented by data structures known as blockchains. \emph{Blockchain} here refers to "a decentralized, replicated, immutable and tamper-evident log" \cite{Bano}. Crucially, "data on the blockchain cannot be deleted, and anyone can read data from the blockchain and verify its correctness" \cite{Bano}. Blockchains are composed of \emph{blocks}, which are structures containing transactions. Further, a vital aspect of blockchains, at least in Nakaomto's initial instantiation, is \emph{permissionless consensus}, where "anyone can join (or leave) the protocol execution (without getting permission from a centralized or distributed authority), and the protocol instructions do not depend on the identities of the players" \cite{fruitchains}.
 
 The computers that secure these blockchains and add new transactions to the ledger are known as \emph{miners} \cite{SatoshiWhitepaper}. These miners have a monetary incentive to come to consensus with other miners regarding the ledger's history by mining on the "longest chain". This process is referred to as \emph{Nakamoto Consensus}, which is backed by a process known as \emph{Proof of Work} (PoW)\cite{Bano}. 
 
-Proof of Work is wasteful of energy and computational power, slowing down the network considerably \cite{CromanEtAl}. Additionally, Nakamoto consensus lacks strong finality guarantees \cite{EthPoSFAQ}. As such, alternative consensus protocols have been proposed, many favoring Proof of Stake as a sybil control mechanism. Proof of Work functions as both a sybil control mechanism and as a source of randomness to select a block maker, however Proof of Stake only serves as a sybil control mechanism and thus requires a separate randomness protocol for choosing proposers. Proponents argue that PoS resolves challenges with PoW such as energy inefficiency, high latency, and centralization risk, to name a few \cite{EthPoSFAQ}. 
-\alberto{Introduce PoS gently.}
-In a \emph{Proof of Stake} (PoS) system, consensus is reached through the agreement of validators who have bonded their coins to the network. These validators are akin to miners in PoW. However, in PoS, validators create a deposit (a bond) of coins which allows them to propose and vote on new blocks. 
+PoW is wasteful of energy and computational power, slowing down the network considerably \cite{CromanEtAl}. Additionally, Nakamoto consensus lacks strong finality guarantees \cite{EthPoSFAQ}. As such, alternative consensus protocols have been proposed, many favoring \emph{Proof of Stake} (PoS)~\cite{Ouroboros} as a sybil control mechanism. In a PoS system, consensus is reached through the agreement of validators who have bonded their coins to the network. These validators are akin to miners in PoW. However, in PoS, validators create a deposit (a bond) of coins which allows them to propose and vote on new blocks. While PoW functions as both a sybil control mechanism and as a source of randomness to select a block maker, PoS only serves as a sybil control mechanism and thus requires a separate randomness protocol for choosing proposers. Proponents argue that PoS resolves challenges with PoW such as energy inefficiency, high latency, and centralization risk, to name a few \cite{EthPoSFAQ}. 
 
-To date, there does not exist a sufficient comprehensive analysis of alternative consensus protocols favoring PoS. This category of protocols is being deeply explored by major research groups and projects in the space, and has the potential to power more scalable and energy efficient blockchain platforms. Building consensus protocols is fundamentally non-trivial, and requires a deep understanding of previous work to most efficiently build upon current solutions or adopt existing solutions to a particular use case. Our goal is to provide a comprehensive analysis of major alternative blockchain consensus protocols, evaluating each within a common framework to allow for accurate and efficient comparison. Here, we classify protocols by network, adversarial and economic model, and understand the common challenges in proposer and committee election, message propagation, finalization, handling churn, security of randomness generation, network partition resolution, and scalability. 
+To date, there does not exist a sufficient comprehensive analysis of alternative consensus protocols favoring PoS. This category of protocols is being deeply explored by major research groups and projects in the space, and has the potential to power more scalable and energy efficient blockchain platforms. Building consensus protocols is fundamentally non-trivial, and requires a deep understanding of previous work to most efficiently build upon current solutions or adopt existing solutions to a particular use case. Our goal is to provide a comprehensive analysis of major alternative blockchain consensus protocols, evaluating each within a common framework to allow for accurate and efficient comparison. Here, we classify protocols by network, adversarial and economic model, and understand the common challenges in proposer and committee election, message propagation, finalization, handling churn, security of randomness generation, network partition resolution, and scalability. In particular, we focus our analysis on Tendermint~\cite{Tendermint}, Thunderella~\cite{Thunderella}, Algorand~\cite{Algorand}, Dfinity~\cite{Dfinity}, Ouroboros Genesis~\cite{Ouroboros}, Casper FFG~\cite{FFG}, and Casper TFG~\cite{TFG}.
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
-\alberto{Need to refine scope (ie, we focus on Tendermint, Algorand, etc)}
-\alberto{Write outline.}
-\hfill 
- 
+
+\alberto{Add outline.}
+\alberto{@all, This intro section is quite long, what about a 'Related Works and Problem Definition' section embedding the current subsections 1.1 and 1.2? Subsection 1.3 could then become a proper section.}
+
+\hfill  
 \hfill May 2018
 
 
-\subsection{Related Works}
+\subsection{Related Works} \label{related}
 This work follows an academic succession of literature providing systematic reviews and meta analyses of Bitcoin and related topics. Bonneau et. al \cite{Bonneau} perform a mathematical evaluation of cryptocurrencies. Zohar \cite{Zohar} examine scalability issues pertaining to blockchains, especially Bitcoin. Pass and Shi \cite{Rethinking} mathematically analyze blockchain-based permissionless, sleepy consensus, demonstrating that it is strictly harder than classical consensus. Croman et. al \cite{CromanEtAl} present a position paper on scalability bottlenecks and proposed solutions. 
 
-Indeed, there have been academic works encouraging the shift from PoW to PoS and calling for more robust analysis frameworks, including Vukolic \cite{Vukolic}, which encourages use of classical BFT protocols over PoW for reasons of safety and fork-resistance. \note{Add more works encouraging.} Bano et al. \cite{Bano} investigate blockchain  protocols for consensus, providing a survey of different types of alternative consensus protocols that aim to be used in permissionless environments.
-\alberto{Add Arthur Gervais literature.}
+Indeed, there have been academic works encouraging the shift from PoW to PoS and calling for more robust analysis frameworks, including Vukolic \cite{Vukolic}, which encourages use of classical BFT protocols over PoW for reasons of safety and fork-resistance. 
+\note{Add more works encouraging.} 
+
+Bano et al. \cite{Bano} investigate blockchain protocols for consensus, providing a survey of different types of alternative consensus protocols that aim to be used in permissionless environments; and Gervais et al.~\cite{Gervais} describe a framework evaluating the security and performance of PoW blockchains.
 
 
 \subsection{Problem Definition}
@@ -737,7 +741,6 @@ The consensus problem is the issue of multiple processors coming to agreement on
 
 \subsubsection{Consensus in the Blockchain Setting}
 Notably, blockchain consensus presents a departure from traditional consensus. First, blockchains don't necessitate that different nodes, not necessarily representing a single processor, come to consensus. What accounts for a single node differs from protocol to protocol. Additionally, blockchains are meant to handle significant churn, and are typically meant to deal with permissionless consensus \cite{Rethinking}.
-\alberto{Move citation up as the term is already introduced.}
 
 In addition to agreement, termination, and validity, some protocols in the space have other desired properties, which we define here. Pass and Shi note \emph{consistency} as a prerequisite for consensus, which requires that "all honest nodes’ logs agree with each other although some nodes may progress faster than others" \cite{Rethinking}. Additionally, Pass and Shi describe a required \emph{liveness} property by which "transactions submitted by an honest user get incorporated into the ledger sufficiently fast" \cite{fruitchains}.
 
@@ -745,14 +748,14 @@ A \emph{safety} property, explicitly specified as desirable quality in many of t
 
 Further, there are a number of distinct parties that interact in blockchain systems in the attempt to come to consensus. First are \emph{nodes}, which are any actors that interact with the blockchain. In PoS systems, \emph{validators} are those who have staked by bonding currency in the system. There exists a \emph{validator-set} comprised of all validators in a system, and a \emph{committee}, which is the set of validators chosen to verify blocks at some point in time in a system. Further, a \emph{proposer} is a validator chosen from the validator set, that collects transactions and forms blocks.
  
-There are two major categories of PoS protocols: chain-based and BFT-style \cite{EthPoSFAQ}. In \emph{chain-based} systems, a validator is pseudo-randomly chosen to create a block which is then extended by proposers \alberto{Define 'proposer' here (it is done after)} in the rounds that follow. This is meant to simulate Nakamoto PoW consensus. In this case, blocks are probabilistically finalized as they move deeper into the chain. In \emph{BFT-style} PoS blockchains, one of these validators is randomly chosen as a proposer to propose a new block to add to the blockchain in every round. The rest of the validators vote on the inclusion of this new block, with voting power in proportion to the bonds they have staked. Consensus is achieved when the some pre-specified portion of validators agree on accepting the new block. 
-\alberto{Say that we don't deal with permissioned ledgers.}
+There are two major categories of PoS protocols: chain-based and BFT-style \cite{EthPoSFAQ}. In \emph{chain-based} systems, a validator is pseudo-randomly chosen to create a block which is then extended by proposers in the rounds that follow. This is meant to simulate Nakamoto PoW consensus. In this case, blocks are probabilistically finalized as they move deeper into the chain. In \emph{BFT-style} PoS blockchains, one of these validators is randomly chosen as a \emph{proposer} to propose a new block to add to the blockchain in every round. The rest of the validators vote on the inclusion of this new block, with voting power in proportion to the bonds they have staked. Consensus is achieved when the some pre-specified portion of validators agree on accepting the new block. 
+\alberto{Define 'proposer' in the context of chain-based systems (currently only done for BFT-style systems).}
 
 \subsection{Model}
 
 \begin{table*}[htp]
  \caption{Model}
-\label{}
+\label{tab:model}
 \begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
 \toprule
                  & Tendermint & Thunderella & Algorand & Dfinity & Ouroboros G. & Casper FFG & Casper TFG\\ 
@@ -773,41 +776,40 @@ Byz. Liveness Tolerates & 1/3  & 1/4  & N/A &  N/A & N/A &  N/A & N/A\\
 \end{table*}
 
 \subsubsection{Network and Computational Synchrony Model}
-In both traditional distributed systems literature and blockchain consensus, we consider the message passing model in which processors communicate by sending messages between bidirectional communication channels \cite{AttiyaWelch}. In blockchain consensus protocols, these nodes form a peer-to-peer network, meaning that every message is propagated to every node in the network via a gossip protocol. Different protocols adopt different timing models based on the environment in which they are designed to function. That is, some protocols are designed to work in unreliable networks that drop messages and may cause arbitrary message delay, like the Internet, whereas other protocols are optimized for extremely reliable channels, like permissioned company intranets. \alberto{Cite permissioned ledgers.} These protocols are said to be operating under differing assumptions of synchrony.  
+In both traditional distributed systems literature and blockchain consensus, we consider the message passing model in which processors communicate by sending messages between bidirectional communication channels \cite{AttiyaWelch}. In blockchain consensus protocols, these nodes form a peer-to-peer network, meaning that every message is propagated to every node in the network via a gossip protocol. Different protocols adopt different timing models based on the environment in which they are designed to function. That is, some protocols are designed to work in unreliable networks that drop messages and may cause arbitrary message delay, like the Internet, whereas other protocols are optimized for extremely reliable channels, like permissioned company intranets. These protocols are said to be operating under differing assumptions of synchrony.  
 
 
 In a \emph{fully synchronous} network, there is a known upper bound on message delay and all messages are received in the exact linear ordering in which they were sent. This assumption is often considered to be unrealistic in practice since it assumes the existence of a global synchronization clock which is extremely hard (practically infeasible) distributed system \cite{Mahnush}. Full synchrony allows algorithms to operate in rounds, since this upper bound on message transmission exists. 
 
 \emph{Synchronous} networks assume a known upper bound on message delay, however messages do not need to be ordered \cite{Mahnush}.
 
-\emph{Partial synchrony} assumes the existence of an upper bound on messages transmission delays or the relative speed of process execution, but this upper bound is not known a priori to any nodes in the protocol. This model assumes that the messages sent are received by their recipients within some fixed time bound. In other words, while the messages may be delayed arbitrarily, they are guaranteed to be delivered within the time bound. In the Internet, messages are delivered in a partially synchronous manner \cite{Mahnush}.
+\emph{Semi-synchronous} Networks also assume the existence of an upper bound not known a priori, however the distribution of the upper bound is known \cite{Attiya&Lynch}.
 
-\emph{Semi-synchronous} Networks also assume the existence of an upper bound not known a priori, however the distribution of the upper bound is known \cite{Attiya&Lynch}. \alberto{Re-order paragraphs.}
+\emph{Partial synchrony} assumes the existence of an upper bound on messages transmission delays or the relative speed of process execution, but this upper bound is not known a priori to any nodes in the protocol. This model assumes that the messages sent are received by their recipients within some fixed time bound. In other words, while the messages may be delayed arbitrarily, they are guaranteed to be delivered within the time bound. In the Internet, messages are delivered in a partially synchronous manner \cite{Mahnush}.
 
 \emph{Asynchrony} implies that there is no fixed upper bound on how long it takes for a message to be delivered or how much time elapses between consecutive steps of a processor. Messages sent by parties may be arbitrarily delayed and no bound is assumed on the amount of time that it takes for the messages to be delivered \cite{Mahnush}. 
 
 \subsubsection{Adversarial Model}
-Protocols assume different types of adversaries and craft defenses accordingly. In cryptography literature, the corrupted parties can be designated as static or adaptive. \emph{Adaptive} adversaries have the ability to control nodes and change which nodes they control to maximize their likelihood of impeding network function; that is, they adapt their corruptions as circumstances change. In contrast, \emph{static} adversaries have corrupted a certain number of network nodes ahead of time and exercise complete control over these nodes. They are not able to change which nodes they have corrupted or to corrupt new nodes over time. \alberto{Re-order 'static' and 'adaptive' paragraphs.}
+Protocols assume different types of adversaries and craft defenses accordingly. In cryptography literature, the corrupted parties can be designated as static or adaptive. \emph{static} adversaries have corrupted a certain number of network nodes ahead of time and exercise complete control over these nodes. They are not able to change which nodes they have corrupted or to corrupt new nodes over time.   In contrast, \emph{adaptive} adversaries have the ability to control nodes and change which nodes they control to maximize their likelihood of impeding network function; that is, they adapt their corruptions as circumstances change. 
 
 There is a spectrum along which adversaries can be adaptive. \emph{Mildly adaptive} adversaries can only corrupt parties based on past messages, and cannot alter messages already sent. Moreover, the adversary may mildly corrupt groups, but this corruption takes longer than the activity period of the group. The adversary can corrupt the proposer and block makers too if chosen ahead of time, as it can anticipate which nodes those will be. \emph{Strongly adaptive} adversaries can see all messages sent by honest parties in any given round, and based on the message content, can decide whether or not to corrupt a party by altering its message or sabotaging message delivery. These corruptions are instantaneous. The protocols we analyze fall at either end of or along this spectrum.
 
-Moreover, there are two major kinds of failure models addressed by consensus protocols: \emph{crash failures}, when processes stop without warning and \emph{byzantine failure}, when processes exhibit any arbitrary type of malfunction \cite{FLP}. Traditional distributed consensus protocols like Paxos and RAFT, \alberto{Citation needed} meant to be executed in non adversarial settings only tolerate crash faults, however, blockchain consensus protocols must be robust enough to operate in adversarial settings and as such must tolerate both crash and byzantine failures. 
+Moreover, there are two major kinds of failure models addressed by consensus protocols: \emph{crash failures}, when processes stop without warning and \emph{byzantine failure}, when processes exhibit any arbitrary type of malfunction \cite{FLP}. Traditional distributed consensus protocols like Paxos~\cite{Paxos} and RAFT~\cite{Raft}, meant to be executed in non adversarial settings only tolerate crash faults, however, blockchain consensus protocols must be robust enough to operate in adversarial settings and as such must tolerate both crash and byzantine failures. 
 
 
 \subsubsection{Economic Model}
 Given that validators in a PoS framework validate in order to collect potential rewards given for honest validation, it is impossible to divorce a PoS framework for public blockchains from its respective incentive structure. Incentive structures are developed given some assumptions of human behavior. Following traditional economic literature, an protocol can be deemed incentive compatible following a Nash equilibrium or $\epsilon$-Nash equilibrium. In a Nash equilibrium, no actor has an incentive to deviate from their behavior \cite{AlgoGT}. An epsilon Nash equilibrium approximately satisfies the constraints of a Nash equilibrium such that an actor might have a small incentive to deviate from their behavior \cite{PapaD}. The majority of protocols we analyze have not defined incentives and as such do not conduct a formal economic analysis of their protocol. For these protocols we are unable to comment on the economic model.
 
 \subsubsection{Analysis of Model in each Protocol}
-Refer to Table 1 for a succinct presentation of the network and adversarial model of each protocol discussed in this work. Here we explain the nuances of network and adversarial model for the above protocols.
-\alberto{Add citations for all the following systems (in paragraphs and table)}
-\alberto{I would differentiate in the table N/A as 'not provided' and '-' as not applicable; add leggend to the table.}
-\alberto{Justify in each paragraph the 'safety' and 'liveness' value in the table.}
+Refer to \Cref{tab:model} for a succinct presentation of the network and adversarial model of each protocol discussed in this work. Here we explain the nuances of network and adversarial model for the above protocols.
+\alberto{@all, what about differentiating in the table 'N/A' as 'not provided/unclear' and '-' as 'not applicable'}
+\alberto{Justify in each of the paragraphs below the 'safety' and 'liveness' properties given in \Cref{tab:model}.}
 
 \paragraph{Tendermint} Tendermint operates in partial synchrony in the proposal step and asynchrony in rounds once the block is proposed. The protocol tolerates a mildly adaptive adversary controlling up to \(\frac{1}{3}\) Byzantine nodes. Tendermint does not specify incentives or conduct a formal economic analysis of their protocol. 
 \paragraph{Thunderella} Thunderella has an asynchronous optimistic fast path with fully synchronous underlying blockchain thus the protocol is ultimately synchronous. The protocol tolerates a mildly adaptive adversary handling adaptive security with erasures in the random oracle model. The adversary is in charge of scheduling message delivery such that they cannot modify contents broadcast by honest parties, but can reorder and delay them. An $\epsilon$-Nash equilibrium is specified against any coalition that controls only a minority of the total computation power, such that an adversary in this case cannot earn more than its fair share of rewards. This is based on Pass and Shi's concept of fairness outlined in Fruitchains \cite{fruitchains}.
 \paragraph{Algorand} Algorand provides safety under partial synchrony such that after an asynchronous period, the network must be strongly synchronous for a reasonably long period again. The protocol ensures liveness under synchrony. Algorand tolerates an adversary between a mildly adaptive and strongly adaptive adversary in that the adversary may temporarily fully control the network and immediately corrupt users in targeted attacks because of immediate player replaceability. Algorand does not specify incentives or conduct a formal economic analysis of their protocol. 
 \paragraph{Dfinity} Dfinity practically operates in partial synchrony, however is only formally proven in synchrony. The protocol can tolerate a mildly adaptive adversary and does not specify incentives or conduct a formal economic analysis of the protocol.
-\paragraph{Ouroboros Genesis} Ouroboros Genesis guarantees safety under partial synchrony and tolerates an adversary that we classify as between mildly and strongly adaptive adversary in that under the assumption of majority stake being held and an upper bound on message delay \note{rephrase}, the adversary can corrupt any participant at any moment. In this model, desynchronized parties have their stake considered adversarial until some $d$ rounds pass, and they are full synchronized again. Ouroboros Genesis does not specify incentives or conduct a formal economic analysis of the protocol. 
+\paragraph{Ouroboros Genesis} Ouroboros Genesis guarantees safety under partial synchrony and tolerates an adversary that we classify as between mildly and strongly adaptive adversary; the adversary can corrupt any participant at any moment under the assumption that the majority of the stake is held by honest nodes and the existence of an upper bound on message delay. In this model, desynchronized parties have their stake considered adversarial until some $d$ rounds pass, and they are full synchronized again. Ouroboros Genesis does not specify incentives or conduct a formal economic analysis of the protocol. 
 \paragraph{Casper FFG} Casper FFG does not provide a comprehensive discussion of synchrony, but states that all clients have local clocks that are perfectly synchronized with any discrepancy treated as part of a known communication delay, thus we consider the protocol as partially synchronous. \note{According to Mahnush, it is synchronous.} The protocol does not discuss its adversarial model, and does not specify incentives or conduct a formal economic analysis. 
 \paragraph{Casper TFG} Casper TFG provides asynchronous safety in that blocks won't be reverted due to the arbitrary timing of future events, and provides liveness given some synchrony assumption. The safety proof holds with arbitrary byzantine behavior. The types of byzantine behavior nodes might encounter include crash faults, nodes generating invalid messages, and equivocation. \alberto{Move this last sentence up.} The protocol does not specify incentives or conduct a formal economic analysis. 
 
@@ -821,13 +823,14 @@ Proposer and committee election refers to the process of selecting a validator (
 A crucial part of consensus in any protocol is to be able to have a majority of validators decide on the same value. In order to do so, the information of that value has to spread from its origin to the rest of the network. Propagation is the act of dispersing information within a network. Most protocols use a form of gossiping to take advantage of the connectivity of nodes to spread information.
 
 \subsection{Finality}
-Blockchains are notorious for being "immutable". By that standard, each block within the chain should be finalized ideally as quickly and efficiently as possible. BFT based protocols are able to decidedly finalize blocks, while chain-based protocols can only guarantee probabilistic finality.
-\alberto{Improve this.}
+Blockchains are notorious for being "immutable". By that standard, each block within the chain should be finalized ideally as quickly and efficiently as possible. BFT based protocols are able to decidedly finalize blocks; i.e., all well-formed blocks will, eventually, irrevocably be committed to the blockchain. On the other hand, Chain-based protocols can only guarantee probabilistic finality.
 
 \subsection{Handling Churn}
 Churn describes change in a set of participating nodes due to joins, leaves, and failures. \cite{GodfreyEtAl} Given the public nature of blockchains, protocols must be able to effectively deal with churn of proposers and validators. Every blockchain platform must be able to handle users joining and leaving the network.
 
 \section{Algorithms of Relevant Protocols}
+\alberto{@all, What about moving this section right before 'model'? It may be helpful to have an overview of the protocols before comparing them with each other; this would also allow to cut off repetitions in the following sections.}
+
 Below, we provide a high level overview of the relevant protocols. We assume a working knowledge of these protocols. Note that some of these protocols may differ in practice than in their papers.
 
 \subsection{Tendermint}
@@ -848,10 +851,10 @@ Consensus proceeds, as follows, in multiple rounds such that each round has one 
 If a block is not proposed in time or block does not receive enough votes in the pre-vote or pre-commit, then a new round occurs where a new block is proposed at the same height.
 
 \subsubsection{Finality}
-A block achieves absolute finality if it achieves \(\frac{2}{3}\) or more pre votes and pre commits. This process continues indefinitely unless \(\frac{1}{3}\) or more validators become unresponsive, in which case the network halts. Above, we see that this protocol prefers consistency over availability. \alberto{What is the difference between 'liveness' and 'availability'?}
+A block achieves absolute finality if it achieves \(\frac{2}{3}\) or more pre votes and pre commits. This process continues indefinitely unless \(\frac{1}{3}\) or more validators become unresponsive, in which case the network halts. Above, we see that this protocol prefers consistency over availability. \alberto{@all, The difference between 'liveness' and 'availability' is pretty subtle (explained in section 1.2.2); do we really need to make that distinction? What about only considering 'liveness' and forgetting about the latter?}
 
 \subsubsection{Handling churn (join and leave)}
-Tendermint handles rotating validator-sets by allowing updates to the validator-set by specifying public keys and updated voting power for a new set of validators. To remove validators, the protocol simply sets their voting power to 0. Validators that haven't signed for a protocol specified number of blocks, are considered timed out and implicitly unbonded. When validators stake, they lock up their funds for a particular bonding period. To unlock their funds, they must specify their intent to do so and then wait for a 2-3 month unbonding period. This allows for the knowledge of how the validator-set will change and mitigates the nothing at stake problem. \alberto{Citation needed.} 
+Tendermint handles rotating validator-sets by allowing updates to the validator-set by specifying public keys and updated voting power for a new set of validators. To remove validators, the protocol simply sets their voting power to 0. Validators that haven't signed for a protocol specified number of blocks, are considered timed out and implicitly unbonded. When validators stake, they lock up their funds for a particular bonding period. To unlock their funds, they must specify their intent to do so and then wait for a 2-3 month unbonding period. This allows for the knowledge of how the validator-set will change and mitigates the nothing at stake problem.
 
 \subsection{Thunderella}
 Thunderella \cite{Thunderella} builds on top of Pass and Shi's Sleepy Consensus \cite{Sleepy} and Snow White \cite{SnowWhite}, to provide the basis for a scalable
@@ -860,28 +863,26 @@ Thunderella \cite{Thunderella} builds on top of Pass and Shi's Sleepy Consensus 
 \subsubsection{Proposer \& Committee election and Randomness generation}
 
 Thunderella elects a proposer in the BFT overlay subset of the protocol, however the specific method of selecting a proposer is decided by the implementing application. Committee Selection methods are also left up to the decision of the application as well, however three different options are suggested:
-\begin{enumerate} \item Implement a Random Oracle which is secure against slow corruptions either using a \emph{hash function}, function that takes any input and returns fixed-size output, \indent and seeding it like in Snow White
-\cite{SnowWhite} \alberto{Hash functions are more than that -- just cite or don't explain.} or  \emph{pseudorandom function (PRF)}, a function family which cannot be significantly distinguished by an efficient algorithm from a truly random oracle, like in Sleepy. \cite{Sleepy}.
-\item Implement a Random Oracle and VRF \alberto{Expand VRF.} which is secure \indent against adaptive corruptions using Algorand's model.
+\begin{enumerate} \item Implement a Random Oracle which is secure against slow corruptions either using a \emph{hash function} and seeding it like in Snow White~\cite{SnowWhite}, or a \emph{pseudorandom function (PRF)}\footnote{Pseudorandom functions (PRF) are a function family which cannot be significantly distinguished by an efficient algorithm from a truly random oracle}, like in Sleepy~\cite{Sleepy}.
+\item Implement a Random Oracle and VRF. A \emph{verifiable random function (VRF)} is a pseudo-random function where each output is unpredictable given the knowledge of all prior outputs. Each output has publicly verifiable proofs of output correctness~\cite{MicaliEtAl}.  This method is secure against adaptive corruptions using Algorand's model.
 \item Use recent validators to form committee as long as the underlying blockchain is fair. This method is secure against slow corruptions.
 \end{enumerate}
 
 In all cases, if there are too many validators eligible to vote, the protocol considers random down-selection to reduce bandwidth consumption. This down-selection can be conducted with a random oracle or random oracle and VRF.
-A \emph{random oracle} is an abstract black-box that generates truly random numbers \cite{Mahnush}. A \emph{verifiable random function (VRF)} is a psuedo-random function where each output is unpredictable given the knowledge of all prior outputs. Each output has publicly verifiable proofs of output correctness. \cite{MicaliEtAl} \alberto{This should come in the previous item.}
-
+A \emph{random oracle} is an abstract black-box that generates truly random numbers~\cite{Mahnush}. 
 \subsubsection{Propagation and Creation of Blocks}
 The 'fast path' of the protocol has an accelerator, which acts as the proposer in proposing blocks, and a committee, which verifies proposed blocks. If the Accelerator and \(\frac{3}{4}\)  of the committee is honest, then the protocol proceeds as follows:
 \begin{enumerate}
     \item The Accelerator proposes transactions with associated sequence numbers. 
     \item The Accelerator signs transactions and sends these to the rest of the committee. If a \(\frac{2}{3}\) supermajority of the committee acknowledges then the transaction is considered notarized.
 \end{enumerate}
-If either of the above does not hold, the protocol enters slow mode, falling back to the underlying blockchain and their protocol for creating blocks and propagating them. \alberto{Not clear why Byz liveness is 1/4.}
+If either of the above does not hold, the protocol enters slow mode, falling back to the underlying blockchain and their protocol for creating blocks and propagating them. \alberto{Clearify why Byz liveness is 1/4.}
 
 \subsubsection{Finality}
 Any maximum sequence of transactions with no gaps that has been notarized is considered fully confirmed output. Transactions are considered probablisitically finalized after they are some $k$ blocks deep into the slow chain, where $k$ is the security parameter specified by the implementing protocol. 
 
 \subsubsection{Handling churn (join and leave)}
-Thunderella handles churn as it supports robust committee reconfiguration defending against posterior corruptions. Robust committee reconfiguration means that committees in Thunderella are chosen such that each committee remains honest although not necessarily online until the honest chains are roughly the clock time for the current tx($c$) + 4 * security parameter($k$) ($c$ + 4$k$), since notarization transactions are only considered legitimate if included in the blockchain by length ($c$ + 2$k$). Posterior corruptions refer to a set of users possibly holding majority of stake sometime in past selling their stake at some point and from that point onward such that they might be incentivized to act maliciously (eg. by forking and double spending old money). \alberto{This last sentence should be explained before.} Thunderella suggests the following reconfiguration approaches: 
+Thunderella handles churn as it supports robust committee reconfiguration defending against posterior corruptions. Robust committee reconfiguration means that committees in Thunderella are chosen such that each committee remains honest although not necessarily online until the honest chains are roughly the clock time for the current tx($c$) + 4 * security parameter($k$) ($c$ + 4$k$), since notarization transactions are only considered legitimate if included in the blockchain by length ($c$ + 2$k$). Posterior corruptions refer to a set of users possibly holding majority of stake sometime in past selling their stake at some point and from that point onward such that they might be incentivized to act maliciously (eg. by forking and double spending old money). \alberto{This last sentence should be explained before; eg, in the intro or in the 'mode' section.} Thunderella suggests the following reconfiguration approaches: 
 \begin{enumerate}
     \item Use underlying blockchain to establish IDs of recent miners and have only recent miners form the committee. 
     \item Have stakeholders act as committee.
@@ -893,18 +894,21 @@ Algorand \cite{Gilad} is a Proof of Stake protocol devised by Silvio Micali empl
 \subsubsection{Proposer \& Committee election and Randomness generation}
 Algorand chooses committee members and proposers randomly among all users based on the users’ weights using a technique called cryptographic sortition. This is a private non-interactive method where every validator in the system can independently determine if they are in the committee by running the VRF on their private key and info from blockchain. A VRF is a psuedo-random function where each output is unpredictable given the knowledge of all prior outputs. Each output has publicly verifiable proofs of output correctness. Here, the VRF generates a proof which the validator can include in their message to prove to other validators that she is in the committee. Multiple people can be selected as proposers and a person may be given multiple votes in a committee (based on their proportion of stake). In Algorand, each user is treated as a collection of unit value sub-users. The rank of a proposer is thus chosen based on the highest priority of each sub-user.
 
-Using the VRF: $VRF_{sk(x)}$ returns two values: a hash $h$ and a proof $p$. The hash $h$ is uniquely determined by $sk$ and $x$, but is indistinguishable from random to anyone that does not know $sk$. The proof $p$ allows someone to check that the hash of $x$ by person with public key $pk$ matches the hash $h$ without knowing $s$. $VRF$ provides these properties even if $pk$ and $s$ are chosen by an attacker. Thus an attacker doesn't know if a person was chosen until they send a message which includes the hash and proof \alberto{Is $s=sk$ ?}.
+Using the VRF: $VRF_{sk(x)}$ returns two values: a hash $h$ and a proof $p$. The hash $h$ is uniquely determined by $sk$ and $x$, but is indistinguishable from random to anyone that does not know $sk$. The proof $p$ allows someone to check that the hash of $x$ by person with public key $pk$ matches the hash $h$ without knowing $s$. $VRF$ provides these properties even if $pk$ and $s$ are chosen by an attacker. Thus an attacker doesn't know if a person was chosen until they send a message which includes the hash and proof \alberto{Clarify notations; is $s=sk$ ?}.
 
 Selection of Committee size: The committee size is based on a calculation which depends on the number of honest validators in Algorand, the threshold of honest validators in the committee and the acceptable probability in which there will be more than the threshold number of malicious validators in the committee. 
 
 \subsubsection{Propagation and Creation of Blocks}
-Creation and propagation proceeds as follows. There is at least one block proposed. To minimize cost of gossiping unnecessary blocks, a sortition hash is used to prioritize block proposals. (priority of a block = priority of validator who proposed block = todo: @APARNA $arg\,max_{sub\,user\, index}hash(h\,||\,sub\,user\,index)$) i.e the value of sub user index that maximizes the output of the hash, here user is akin to validator). Since each validator can be chosen multiple times in a round to be a proposer or in the committee, each time, the validator is given a new index and key pair. This new index and key pair is the referred to as the $sub\,user\,index$.
+Creation and propagation proceeds as follows. There is at least one block proposed. To minimize cost of gossiping unnecessary blocks, a sortition hash is used to prioritize block proposals. (priority of a block = priority of validator who proposed block = $arg\,max_{sub\,user\, index}hash(h\,||\,sub\,user\,index)$) 
+\aparna{Todo.} 
+
+i.e the value of sub user index that maximizes the output of the hash, here user is akin to validator). Since each validator can be chosen multiple times in a round to be a proposer or in the committee, each time, the validator is given a new index and key pair. This new index and key pair is the referred to as the $sub\,user\,index$.
 The agreement protocol consists of two phases: 
 \begin{enumerate}
     \item BA* reduces the problem of agreeing on a block to agreement on one of two options by narrowing down one non-empty proposed block to agree on.
     \item BA* reaches agreement on one of these options: either agreeing on a proposed block, or agreeing on an empty block. 
 \end{enumerate}
-\alberto{What is BA*?}
+\alberto{Clarify what is BA* is?}
 \subsubsection{Finality}
 In strong synchrony, BA* designates consensus on value $V$ as final if the algorithm reached agreement in the first step, and if enough validators observed this consensus being reached. A block that is a predecessor of a finalized block also becomes finalized. Final blocks guarantee that no other block could have reached consensus in the same round. This means that all final blocks are totally ordered with respect to one another, since (1) blocks form a linear chain, and (2) there can be exactly one final block at any given position in the chain. In the case of weak synchrony, BA* may have forks and thus may only be able to reach tentative consensus. To resolve these forks, Algorand periodically proposes a fork that all validators should agree on, and uses BA* to reach consensus on whether all validators should, indeed, switch to this fork. All validators passively keep track of all forks and at every time interval they run the recovery protocol (where they agree on forks instead of blocks) to sync up the system.
 
@@ -1055,7 +1059,7 @@ Revealed before current round & Yes  & Y/N  & No & Yes & No & RANDAO TODO & N/A\
 \end{tabularx}
 \end{table*}
 
-\note{CUT Down to be less repetitive.}
+\note{Cut down to be less repetitive.}
 This section analyzes the randomness generation of each of the protocols. Randomness is an important part of every protocol because it impacts committee and proposer selection. A predictable or biasable source of randomness would reduce the strength of an adversary that the protocol can tolerate. Hence it is important to understand how an adversary can benefit from the randomness scheme that a protocol uses. As such, we look at two kinds of adversaries: an active adversary and a passive adversary. A \emph{passive} adversary is one who would try to predict the outcome of the randomness, without interacting with the randomness scheme in any manner i.e the adversary is merely capable of observing all the interactions of other users with the randomness scheme. A protocol which has \emph{predictable} randomness means that given the inputs to the randomness scheme, there exists some stage in the protocol in which the output of the randomness generation function does not appear completely random to an adversary i.e some output values are more likely than other output values. While having an unpredictable source of randomness plays a significant role in securing a protocol, a good randomness scheme should also be able to defend against an active adversary. An \emph{active} adversary tries to tamper with the protocol by modifying the inputs to the randomness generation function with the goal of changing the resulting randomness output for a round. This is referred to as \emph{biasable}. The adversary may or may not be able to determine the resulting randomness seed. Thus the ability of an adversary to bias the randomness seed is independent of the adversary's ability to predict the randomness function's output. It is also useful to understand if a protocol reveals the randomness seed before the current round because leaking of the seed ahead of time enables the adversary to learn the proposers and committee ahead of time. This information can be used by an adversary in an attempt to corrupt the chosen committee or proposers from the time when the seed was leaked to the time the new round starts.
 \\\\
 It is also important to note that Random Oracle is a theoretical construction. In practical implementations, only a Pseudorandom Function is available and is used as an approximation of the Random Oracle. 
@@ -1117,7 +1121,7 @@ The analysis for the Random Oracle with a VRF is similar to what is done for Alg
 In all scenarios that the randomness is biasable, it is also predictable since it enables the adversary to reduce the probability of occurance of certain outputs. 
 \subsubsection{Dfinity}
 The randomness seed is not predictable because the threshold $t$ of the signature scheme from which the randomness is derived is chosen according to the equation: 
-$t \in [f+1, n-f]$ where $f$ is the amount of signatures the adversary controls and $n$ is the total signatures in the scheme. \alberto{This is tricky, I will have a deeper though about that.}
+$t \in [f+1, n-f]$ where $f$ is the amount of signatures the adversary controls and $n$ is the total signatures in the scheme. 
 \subsubsection{Ouroboros Genesis}
 The epoch's randomness seed is predictable, but only during the last \(\frac{1}{3}\)  of any epoch because by this point, all the required inputs into the Hash function to determine the next epoch's randomness are publicly available. 
 \subsubsection{Casper FFG}
@@ -1144,7 +1148,6 @@ Casper FFG is still figuring out its source of randomness.
 Casper TFG is still figuring out its source of randomness.
 
 \section{Results and Analysis}
-\alberto{Read carefully from here.}
 Here we present the results provided by these different protocols and an analysis of such. Both in theory, and in practice, the aforementioned protocols will differ in their performance and in their ability to scale to more users and validators. We focus on finalization guarantees, scalability, a comparison of handling churn, and behavior in the case of a network partition.
 
 \begin{table*}[htp]
@@ -1183,7 +1186,7 @@ In Dfinity, the probability of finality increases as the block weight on a chain
 \paragraph{Casper TFG} TFG achieves finality under validators with different fault tolerance thresholds. That is, the protocol is asynchronously safe and BFT allowing for validators to have different fault tolerance thresholds.
 
 \subsection{Scalability Comparison}
-Scalability refers to the capability of a system to handle growth efficiently, and can be measured via latency and throughput of block and transaction finalization in blockchain protocols. The issue of scalability in blockchain systems is critical and is one that many protocols have attempted to address. \alberto{Cite examples.} In the case that publications contain experiments for testing the scalability of protocols, we consider their resulting latency and throughput. 
+Scalability refers to the capability of a system to handle growth efficiently, and can be measured via latency and throughput of block and transaction finalization in blockchain protocols. The issue of scalability in blockchain systems is critical and is one that many protocols have attempted to address. \alberto{Citations needed; who attempted it?} In the case that publications contain experiments for testing the scalability of protocols, we consider their resulting latency and throughput. 
 
 The majority of protocols we consider including Tendermint, Thunderella, Dfinity, Ouroboros Genesis, Casper FFG, and Casper TFG do not publicly specify latency or throughput experiments. Algorand, did conduct several protocol experiments and provides the results in their paper. They conducts these experiments on 1,000 EC2 virtual machines simulating up to 500,000 users. Their results from this scheme convey that for all users in at least one part of a connected component in a graph, message passing time grows with the diameter of that component, which is logarithmic in the number of users. Moreover, they show that latency increases as block size increases per round and that even with 50k users and 1000 VMs an expensive round can be completed in around 100 seconds. The lowest throughput is 2Mb block in 22 seconds.  
  
@@ -1323,7 +1326,11 @@ In the event of a network partition, Algorand ensures safety, implying that it p
 Given the breadth of knowledge required for creating and deploying complex alternative consensus protocols, it is imperative to have a structured framework to objectively examine the characteristics of each. We have provided a clear framework in which to compare these consensus protocols.  Generalizing these protocols in a way to systematically compare their properties, we distinguish their most critical features in proposer and committee election including the corresponding randomness protocols, block propagation, and block finalization. We consider the environments, and models in which these protocols operate, looking at their network, adversarial, and economic assumptions. We also provide an evaluation of the results of these protocols in their finalization guarantees, scalability capabilities, ability to handle churn, and network partition resolution. This scheme can be used to evaluate the security parameters of a single system, and in turn, compare those parameters across various systems. 
 
 \section{Future Work}
-There remains substantial research to be done in the alternative consensus space. Many of these alternative consensus protocols provide particular guarantees, but still stand to grow stronger. In Thunderella, with greater than \(\frac{1}{3}\) malicious actors, the protocol essentially always falls to the slow chain. In Algorand, if the protocol falls into elongated periods of asynchrony, it simply produces null blocks. In Dfinity, asynchrony TODO: @APARNA. In Tendermint, the deterministic round robin scheme may be vulnerable in practice TODO: @APARNA. And both Casper FFG and Casper TFG require formal protocol specifications in multiple areas of their schemes. 
+There remains substantial research to be done in the alternative consensus space. Many of these alternative consensus protocols provide particular guarantees, but still stand to grow stronger. In Thunderella, with greater than \(\frac{1}{3}\) malicious actors, the protocol essentially always falls to the slow chain. In Algorand, if the protocol falls into elongated periods of asynchrony, it simply produces null blocks. In Dfinity, asynchrony 
+\aparna{Todo.} 
+ In Tendermint, the deterministic round robin scheme may be vulnerable in practice.
+ \aparna{Todo.} 
+And both Casper FFG and Casper TFG require formal protocol specifications in multiple areas of their schemes. 
 
 Moreover, as pointed out in 6.3, there is a lack of research into the economics and game theory of these systems, particularly in incentive structures. This is a crucial piece to optimally parametrize these protocols and create sustainable blockchains.
 
@@ -1391,13 +1398,20 @@ The authors would like to thank Ethan Buchman and Sunny Aggarwal of Tendermint, 
 \begin{thebibliography}{1}
 
 \bibitem{IEEEhowto:kopka}
+
 \bibitem{AlgoGT} N. Nisan, T. Roughgarden, E. Tardos, V. V. Vazirani, Algorithmic Game Theory (PDF), Cambridge, UK: Cambridge University Press: 2007.
+
+\bibitem{Algorand}
+Gilad, Yossi, et al. "Algorand: Scaling byzantine agreements for cryptocurrencies." Proceedings of the 26th Symposium on Operating Systems Principles. ACM, 2017.
 
 \bibitem{AttiyaWelch} H. Attiya and J. Welch. \emph{Distributed Computing: Fundamentals, Simulations, and Advanced Topics.} Hoboken, NJ: Wiley, 2004.
 
 \bibitem{Attiya&Lynch} H. Attiya and N. A. Lynch, "Time bounds for real-time process control in the presence of timing uncertainty," \emph{[1989] Proceedings. Real-Time Systems Symposium, 5-7 Dec. 1989,  Santa Monica, CA, USA,} IEEE: 1989.
 
 \bibitem{Bano} S. Bano, A. Sonnino, M. Al-Bassam, S. Azouvi, P. McCorry, S. Meiklejohn, and G. Danezis. "SoK: Consensus in the Age of Blockchains," arXiv: 2017.
+
+\bibitem{Bitcoin}
+Nakamoto, Satoshi. "Bitcoin: A peer-to-peer electronic cash system." (2008).
 
 \bibitem{BitcoinFAQ} “Frequently Asked Questions.” Bitcoin - Open Source P2P Money.
 
@@ -1409,10 +1423,14 @@ The authors would like to thank Ethan Buchman and Sunny Aggarwal of Tendermint, 
 
 \bibitem{CromanEtAl} K. Croman, C. Decker, I. Eyal, A. E. Gencer, A. Juels, A. Kosba, A. Miller, P. Saxena, E. Shi, and E. Gun. On Scaling Decentralized Blockchains, in \emph{International Conference on Financial Cryptography and Data Security, 2016}, Clark J., Meiklejohn S., Ryan P., Wallach D., Brenner M., Rohloff K. (eds) Financial Cryptography and Data Security. FC 2016., vol 9604. pp 106-125. Springer: Berlin, Heidelberg.
 
-\bibitem{Dfinity}  T. Hanke, M. Mohavedi, D. Williams, DFINITY Technology Overview Series: Consensus System, DFINITY Stiftung, 2017.
+\bibitem{Dfinity}  
+T. Hanke, M. Mohavedi, D. Williams, DFINITY Technology Overview Series: Consensus System, DFINITY Stiftung, 2017.
 
 \bibitem{DworkEtAl}
 C. Dwork, N. Lynch, and L. Stockmeyer, “Consensus in the Presence of Partial Synchrony,” Journal of the Assoc. for Computing Machinery, pp. 288-323, Apr. 1988.
+
+\bibitem{Ethereum}
+Wood, Gavin. "Ethereum: A secure decentralised generalised transaction ledger." Ethereum project yellow paper 151 (2014): 1-32.
 
 \bibitem{EthPoSFAQ} Ethereum Proof of Stake FAQ, “Ethereum/Wiki.” GitHub.
 
@@ -1421,6 +1439,9 @@ C. Dwork, N. Lynch, and L. Stockmeyer, “Consensus in the Presence of Partial S
 \bibitem{fruitchains}R. Pass and E. Shi, "The Sleepy Model of Consensus. Cornell, 2017.
 
 \bibitem{Genesis} C. Badertscher, P. Gazi, A Kiayias, A Russell, and V. Zikas, Ouroboros Genesis: Composable Proof-of-Stake Blockchains with Dynamic Availability, IOHK: 2018.
+
+\bibitem{Gervais}
+Gervais, Arthur, et al. "On the security and performance of proof of work blockchains." Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security. ACM, 2016.
 
 \bibitem{GilbertLynch} S. Gilbert and N. Lynch. “Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services.” ACM SIGACT News, vol. 33, no. 2, 2002, p. 51.
 
@@ -1432,12 +1453,21 @@ C. Dwork, N. Lynch, and L. Stockmeyer, “Consensus in the Presence of Partial S
 
 \bibitem{MicaliEtAl} S. Micali, M. Rabin, and S. Vadhan. "Verifiable Random Functions." \emph{40th Annual Symposium on Foundations of Computer Science, New York City, NY, USA, 17-19 October 1999}, 1999. 
 
+\bibitem{Ouroboros}
+Kiayias, Aggelos, et al. "Ouroboros: A provably secure proof-of-stake blockchain protocol." Annual International Cryptology Conference. Springer, Cham, 2017.
+
 \bibitem{PapaD} C. Papadimitriou. “CS 294 Topics in Algorithmic Game Theory: Approximate Nash Equilibria.” Berkeley EECS, Sept. 2011.
 
 \bibitem{ParameterizingCasper} V. Buterin, Parameterizing Casper, 2017.
 TODO: additional source for the above
 
+\bibitem{Paxos}
+Lamport, Leslie. "Paxos made simple." ACM Sigact News 32.4 (2001): 18-25.
+
 \bibitem{SatoshiWhitepaper} S. Nakamoto. “Bitcoin: A Peer-to-Peer Electronic Cash System.” Bitcoin - Open Source P2P Money, 2008.
+
+\bibitem{Raft}
+Agrawal, Prathima. "RAFT: A Recursive Algorithm for Fault Tolerance." ICPP. 1985.
 
 \bibitem{Rethinking} R. Pass, and E. Shi. "Rethinking Large-Scale Consensus, in \emph{2017 IEEE 30th Computer Security Foundations Symposium (CSF), Santa Barbara, CA, USA, 21-25 August, 2017}, IEEE: 2017.
 
@@ -1451,7 +1481,11 @@ TODO: additional source for the above
 
 \bibitem{ItkisXie} G. Itkis and P. Xie. “Generalized Key-Evolving Signature Schemes or How to Foil an Armed Adversary,” Applied Cryptography and Network Security 2003, Lecture Notes in Computer Science 2846, pp. 151-168, 2003.
 
-\bibitem{Thunderella} R. Pass and E. Shi, "Thunderella," Cornell: 2017.
+\bibitem{Tendermint}
+Kwon, Jae. "Tendermint: Consensus without mining." Draft v. 0.6, fall (2014).
+
+\bibitem{Thunderella} 
+R. Pass and E. Shi, "Thunderella," Cornell: 2017.
 
 \bibitem{Gilad}
 Y. Gilad, R. Hemo, S. Micali, G. Vlachos, N. Zeldovich, "Algorand: Scaling Byzantine Agreements for Cryptocurrencies," MIT CSAIL: 2017.
@@ -1467,11 +1501,7 @@ B. Kapron, D. Kempe, V. King, J. Saia, and V. Sanwalani, "Fast Asynchronous Byza
 \bibitem{KingEtAl}
 V. King, J. Saia, V. Sanwalani, and E. Vee, "Scalable Leader Election", in \emph{Symposium on Discrete Algorithms}, 2006.
 
-\bibitem{bitcoin}
-Nakamoto, Satoshi. "Bitcoin: A peer-to-peer electronic cash system." (2008).
 
-\bibitem{ethereum}
-Wood, Gavin. "Ethereum: A secure decentralised generalised transaction ledger." Ethereum project yellow paper 151 (2014): 1-32.
 
 \end{thebibliography}
 
