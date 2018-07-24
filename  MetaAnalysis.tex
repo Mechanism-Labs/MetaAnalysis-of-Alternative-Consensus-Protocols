@@ -1,0 +1,1503 @@
+
+%% bare_adv.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% See: 
+%% http://www.michaelshell.org/
+%% fo
+%%
+%% This is a skeleton file demonstrating the advanced use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE Computer
+%% Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+% IEEEtran V1.7 and later provides for these CLASSINPUT macros to allow the
+% user to reprogram some IEEEtran.cls defaults if needed. These settings
+% override the internal defaults of IEEEtran.cls regardless of which class
+% options are used. Do not use these unless you have good reason to do so as
+% they can result in nonIEEE compliant documents. User beware. ;)
+%
+%\newcommand{\CLASSINPUTbaselinestretch}{1.0} % baselinestretch
+%\newcommand{\CLASSINPUTinnersidemargin}{1in} % inner side margin
+%\newcommand{\CLASSINPUToutersidemargin}{1in} % outer side margin
+%\newcommand{\CLASSINPUTtoptextmargin}{1in}   % top text margin
+%\newcommand{\CLASSINPUTbottomtextmargin}{1in}% bottom text margin
+
+
+
+
+%
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+
+% For Computer Society journals, IEEEtran defaults to the use of 
+% Palatino/Palladio as is done in IEEE Computer Society journals.
+% To go back to Times Roman, you can use this code:
+%\renewcommand{\rmdefault}{ptm}\selectfont
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % The IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+  
+\fi
+
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+\usepackage{tabularx,booktabs}
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+\usepackage{amsfonts}
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%\usepackage{acronym}
+% acronym.sty was written by Tobias Oetiker. This package provides tools for
+% managing documents with large numbers of acronyms. (You don't *have* to
+% use this package - unless you have a lot of acronyms, you may feel that
+% such package management of them is bit of an overkill.)
+% Do note that the acronym environment (which lists acronyms) will have a
+% problem when used under IEEEtran.cls because acronym.sty relies on the
+% description list environment - which IEEEtran.cls has customized for
+% producing IEEE style lists. A workaround is to declared the longest
+% label width via the IEEEtran.cls \IEEEiedlistdecl global control:
+%
+% \renewcommand{\IEEEiedlistdecl}{\IEEEsetlabelwidth{SONET}}
+% \begin{acronym}
+%
+% \end{acronym}
+% \renewcommand{\IEEEiedlistdecl}{\relax}% remember to reset \IEEEiedlistdecl
+%
+% instead of using the acronym environment's optional argument.
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/acronym
+
+
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/pkg/mdwtools
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/pkg/eqparbox
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+% NOTE: PDF thumbnail features are not required in IEEE papers
+%       and their use requires extra complexity and work.
+%\ifCLASSINFOpdf
+%  \usepackage[pdftex]{thumbpdf}
+%\else
+%  \usepackage[dvips]{thumbpdf}
+%\fi
+% thumbpdf.sty and its companion Perl utility were written by Heiko Oberdiek.
+% It allows the user a way to produce PDF documents that contain fancy
+% thumbnail images of each of the pages (which tools like acrobat reader can
+% utilize). This is possible even when using dvi->ps->pdf workflow if the
+% correct thumbpdf driver options are used. thumbpdf.sty incorporates the
+% file containing the PDF thumbnail information (filename.tpm is used with
+% dvips, filename.tpt is used with pdftex, where filename is the base name of
+% your tex document) into the final ps or pdf output document. An external
+% utility, the thumbpdf *Perl script* is needed to make these .tpm or .tpt
+% thumbnail files from a .ps or .pdf version of the document (which obviously
+% does not yet contain pdf thumbnails). Thus, one does a:
+% 
+% thumbpdf filename.pdf 
+%
+% to make a filename.tpt, and:
+%
+% thumbpdf --mode dvips filename.ps
+%
+% to make a filename.tpm which will then be loaded into the document by
+% thumbpdf.sty the NEXT time the document is compiled (by pdflatex or
+% latex->dvips->ps2pdf). Users must be careful to regenerate the .tpt and/or
+% .tpm files if the main document changes and then to recompile the
+% document to incorporate the revised thumbnails to ensure that thumbnails
+% match the actual pages. It is easy to forget to do this!
+% 
+% Unix systems come with a Perl interpreter. However, MS Windows users
+% will usually have to install a Perl interpreter so that the thumbpdf
+% script can be run. The Ghostscript PS/PDF interpreter is also required.
+% See the thumbpdf docs for details. The latest version and documentation
+% can be obtained at.
+% http://www.ctan.org/pkg/thumbpdf
+\usepackage{cleveref}
+
+% NOTE: PDF hyperlink and bookmark features are not required in IEEE
+%       papers and their use requires extra complexity and work.
+% *** IF USING HYPERREF BE SURE AND CHANGE THE EXAMPLE PDF ***
+% *** TITLE/SUBJECT/AUTHOR/KEYWORDS INFO BELOW!!           ***
+\newcommand\MYhyperrefoptions{bookmarks=true,bookmarksnumbered=true,
+pdfpagemode={UseOutlines},plainpages=false,pdfpagelabels=true,
+colorlinks=true,linkcolor={black},citecolor={black},urlcolor={black},
+pdftitle={Bare Demo of IEEEtran.cls for Computer Society Journals},%<!CHANGE!
+pdfsubject={Typesetting},%<!CHANGE!
+pdfauthor={Michael D. Shell},%<!CHANGE!
+pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
+             template}}%<^!CHANGE!
+%\ifCLASSINFOpdf
+%\usepackage[\MYhyperrefoptions,pdftex]{hyperref}
+%\else
+%\usepackage[\MYhyperrefoptions,breaklinks=true,dvips]{hyperref}
+%\usepackage{breakurl}
+%\fi
+% One significant drawback of using hyperref under DVI output is that the
+% LaTeX compiler cannot break URLs across lines or pages as can be done
+% under pdfLaTeX's PDF output via the hyperref pdftex driver. This is
+% probably the single most important capability distinction between the
+% DVI and PDF output. Perhaps surprisingly, all the other PDF features
+% (PDF bookmarks, thumbnails, etc.) can be preserved in
+% .tex->.dvi->.ps->.pdf workflow if the respective packages/scripts are
+% loaded/invoked with the correct driver options (dvips, etc.). 
+% As most IEEE papers use URLs sparingly (mainly in the references), this
+% may not be as big an issue as with other publications.
+%
+% That said, Vilar Camara Neto created his breakurl.sty package which
+% permits hyperref to easily break URLs even in dvi mode.
+% Note that breakurl, unlike most other packages, must be loaded
+% AFTER hyperref. The latest version of breakurl and its documentation can
+% be obtained at:
+% http://www.ctan.org/pkg/breakurl
+% breakurl.sty is not for use under pdflatex pdf mode.
+%
+% The advanced features offer by hyperref.sty are not required for IEEE
+% submission, so users should weigh these features against the added
+% complexity of use.
+% The package options above demonstrate how to enable PDF bookmarks
+% (a type of table of contents viewable in Acrobat Reader) as well as
+% PDF document information (title, subject, author and keywords) that is
+% viewable in Acrobat reader's Document_Properties menu. PDF document
+% information is also used extensively to automate the cataloging of PDF
+% documents. The above set of options ensures that hyperlinks will not be
+% colored in the text and thus will not be visible in the printed page,
+% but will be active on "mouse over". USING COLORS OR OTHER HIGHLIGHTING
+% OF HYPERLINKS CAN RESULT IN DOCUMENT REJECTION BY THE IEEE, especially if
+% these appear on the "printed" page. IF IN DOUBT, ASK THE RELEVANT
+% SUBMISSION EDITOR. You may need to add the option hypertexnames=false if
+% you used duplicate equation numbers, etc., but this should not be needed
+% in normal IEEE work.
+% The latest version of hyperref and its documentation can be obtained at:
+% http://www.ctan.org/pkg/hyperref
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{ob-serves}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{A MetaAnalysis of Proposed Alternative Consensus Protocols for Blockchains}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+
+\author{\IEEEauthorblockN{
+
+}
+\author{
+    \IEEEauthorblockN{Alexis Gauba\IEEEauthorrefmark{1}, Aparna Krishnan\IEEEauthorrefmark{1}, 
+    Zubin Koticha\IEEEauthorrefmark{1}, 
+    Maaz Uddin\IEEEauthorrefmark{2}, 
+    Mahnush Movahedi\IEEEauthorrefmark{3}}
+    \\
+    \IEEEauthorblockA{\IEEEauthorrefmark{1}UC Berkeley, Thunder Research}
+    \IEEEauthorblockA{\IEEEauthorrefmark{2}UC Berkeley}
+    \IEEEauthorblockA{\IEEEauthorrefmark{3}Dfinity}
+}
+\IEEEcompsocitemizethanks{\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+}% <-this % stops a space
+
+\thanks{* = UC Berkeley}}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, June~2018}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Advanced Demo of IEEEtran.cls for IEEE Computer Society Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society journal
+% papers don't need this extra clearance.)
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+Blockchain technology has been gaining popularity in the public, in industry, and in academia. However, these systems are currently limited in their ability to support robust, large-scale applications due to scalability and security challenges \cite{CromanEtAl}. A fundamental step to resolving some of these challenges lies in the blockchain consensus layer. As such, both industry and academia are heavily investing in alternative consensus research and development, seeking alternatives to Bitcoin's Nakamoto consensus. Many of these protocols favor Proof of Stake (PoS) as a Sybil control mechanism to today's Proof of Work (PoW) \cite{EthPoSFAQ}. However, thus far there has been no comprehensive, rigorous comparison of these alternative consensus protocols. This paper presents a systematization of knowledge within these major blockchain protocols, understanding the common challenges and solutions, and providing a formal structure within which to compare them. We break down these protocols by network, adversarial, and economic model, deeply understanding the common challenges of choosing proposers and committees, propogation, and finality. 
+\end{abstract}
+
+% Note that keywords are not normally used for peer review papers.
+\begin{IEEEkeywords}
+Consensus, Blockchain, Cryptoeconomics, Distributed Systems, Cryptography, Economics, Security, Proof of Stake
+\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when compsoc mode
+% is not selected <OR> if conference mode is selected - because compsoc
+% conference papers position the abstract like regular (non-compsoc)
+% papers do!
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc under a non-conference mode.
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\ifCLASSOPTIONcompsoc
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+\else
+\section{Introduction}
+\label{sec:introduction}
+\fi
+% Computer Society journal (but not conference!) papers do something unusual
+% with the very first section heading (almost always called "Introduction").
+% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+% this for you, but you can achieve this effect with the provided
+% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+% is to refer to the section immediately after \section in the above as
+% \IEEEraisesectionheading puts \section within a raised box.
+
+
+
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps (small caps for compsoc).
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by the IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+\IEEEPARstart {B}{lockchain} technology presents a groundbreaking innovation, calling into question long established paradigms in distributed systems computing and financial theory, and providing a novel platform for decentralized internet applications. In particular, cryptocurrencies (like Bitcoin and Ethereum) have gained attention for some distinct benefits they offer over fiat currency including increased transparency and resistance to counterfeiting among other parameters \cite{BitcoinFAQ}. The transactions of these currencies are backed by distributed ledgers that are implemented by data structures known as blockchains. \emph{Blockchain} here refers to "a decentralized, replicated, immutable and tamper-evident log" \cite{Bano}. Crucially, "data on the blockchain cannot be deleted, and anyone can read data from the blockchain and verify its correctness" \cite{Bano}. Blockchains are composed of \emph{blocks}, which are structures containing transactions. Further, a vital aspect of blockchains, at least in Nakaomto's initial instantiation, is \emph{permissionless consensus}, where "anyone can join (or leave) the protocol execution (without getting permission from a centralized or distributed authority), and the protocol instructions do not depend on the identities of the players" \cite{fruitchains}.
+
+The computers that secure these blockchains and add new transactions to the ledger are known as \emph{miners} \cite{SatoshiWhitepaper}. These miners have a monetary incentive to come to consensus with other miners regarding the ledger's history by mining on the "longest chain". This process is referred to as \emph{Nakamoto Consensus}, which is backed by a process known as \emph{Proof of Work} (PoW) \cite{Bano}. 
+
+\subsection{Problem Definition}
+PoW is wasteful of energy and computational power, slowing down the network considerably \cite{CromanEtAl}. Additionally, Nakamoto consensus lacks strong finality guarantees \cite{EthPoSFAQ}. As such, alternative consensus protocols have been proposed, many favoring \emph{Proof of Stake} (PoS) \cite{Ouroboros} as a Sybil control mechanism. In a PoS system, consensus is reached through the agreement of validators who have bonded their coins to the network. These validators are akin to miners in PoW. However, in PoS, validators create a deposit (a bond) of coins which allows them to propose and vote on new blocks. While PoW functions as both a Sybil control mechanism, and as a source of randomness to select a block maker, PoS only serves as a Sybil control mechanism and thus requires a separate randomness protocol for choosing proposers. Proponents argue that PoS resolves challenges with PoW such as energy inefficiency, high latency, and centralization risk, to name a few \cite{EthPoSFAQ}. 
+
+To date, there does not exist a sufficient comprehensive analysis of alternative consensus protocols favoring PoS. This category of protocols is being deeply explored by major research groups and projects in the space, and has the potential to power more scalable and energy efficient blockchain platforms. Building consensus protocols is fundamentally non-trivial, and requires a deep understanding of previous work to most efficiently build upon current solutions or adopt existing solutions to a particular use case. Our goal is to provide a comprehensive analysis of major alternative blockchain consensus protocols, evaluating each within a common framework to allow for accurate and efficient comparison. Here, we classify protocols by network, adversarial and economic model, and understand the common challenges in proposer and committee election, message propagation, finalization, handling churn, security of randomness generation, network partition resolution, and scalability. In particular, we focus our analysis on Tendermint~\cite{Tendermint}, Thunderella~\cite{Thunderella}, Algorand~\cite{Algorand}, Dfinity~\cite{Dfinity}, Ouroboros Genesis~\cite{Ouroboros}, Casper FFG~\cite{FFG}, and Casper TFG~\cite{TFG}.
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+
+\hfill 
+ 
+\hfill Summer 2018
+
+
+\subsection{Related Works} \label{related}
+This work follows an academic succession of literature providing systematic reviews and meta analyses of Bitcoin and related topics. Bonneau et. al \cite{Bonneau} perform a mathematical evaluation of cryptocurrencies. Zohar \cite{Zohar} examine scalability issues pertaining to blockchains, especially Bitcoin. Pass and Shi \cite{Rethinking} mathematically analyze blockchain-based permissionless, sleepy consensus, demonstrating that it is strictly harder than classical consensus. Croman et. al \cite{CromanEtAl} present a position paper on scalability bottlenecks and proposed solutions. 
+
+Indeed, there have been academic works encouraging the shift from PoW to PoS and calling for more robust analysis frameworks, including Vukolic \cite{Vukolic}, which encourages use of classical BFT protocols over PoW for reasons of safety and fork-resistance. %(TODO: add more works encouraging). 
+Bano et al. \cite{Bano} investigate blockchain  protocols for consensus, providing a survey of different types of alternative consensus protocols that aim to be used in permissionless environments; and Gervais et al. \cite{Gervais} describe a framework evaluating the security and performance of PoW blockchains.
+
+
+\subsection{Problem Definition}
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+  
+\subsubsection{Consensus in the Classical Setting}
+
+The consensus problem is the issue of multiple processors coming to agreement on an output.\cite{AttiyaWelch} To solve the consensus problem, termination, agreement, and validity must be guaranteed. \emph{Termination} means that every non faulty node is assigned some value. \emph{Agreement} refers to all correct nodes terminating on the same value. \emph{Validity} means that if all nodes propose the same value then all correct nodes must decide on that particular value. %Consensus is necessary in blockchain systems to allow for every node in the network to agree on the network state. 
+
+\subsubsection{Consensus in the Blockchain Setting}
+Notably, blockchain consensus presents a departure from traditional consensus. %todo, what does the following sentence even mean
+First, blockchains don't necessitate that different nodes, not necessarily representing a single processor, come to consensus. What accounts for a single node differs protocol to protocol. Additionally, blockchains are meant to handle significant churn, and are typically meant to deal with permissionless consensus \cite{Rethinking}. 
+
+In addition to agreement, termination, and validity, some protocols in the space have other desired properties, which we define here. Pass and Shi note \emph{consistency} as a prerequisite for consensus, which requires that "all honest nodes’ logs agree with each other although some nodes may progress faster than others" \cite{Rethinking}. This can be thought of as similar to agreement. Additionally, Pass and Shi describe a required \emph{liveness} property by which "transactions submitted by an honest user get incorporated into the ledger sufficiently fast" \cite{fruitchains}. This can be considered as similar to the termination property.
+
+A \emph{safety} property, explicitly specified as desirable quality in many of the aforementioned works, is defined simply as "one which states that something [undesirable] will not happen" \cite{LamportMultiprocess}. So, when referring to safety, these protocols specify which unwanted protocol behavior they avoid. \emph{Availability} requires that "every request received by a non-failing node in the system must result in a response" \cite{GilbertLynch}. This makes up the CAP theorem, which states that in the presence of a network partition, a protocol cannot guarantee both availability and consistency \cite{GilbertLynch}.
+
+Further, there are a number of distinct parties that interact in blockchain systems in the attempt to come to consensus. First are \emph{nodes}, which are any actors that interact with the blockchain. In PoS systems, \emph{validators} are those who have staked by bonding currency in the system. There exists a \emph{validator-set} comprised of all validators in a system, and a \emph{committee}, which is the set of validators chosen to verify blocks at some point in time in a system. Further, a \emph{proposer} is a validator chosen from the validator set, that collects transactions and forms blocks.
+ 
+There are two major categories of PoS protocols: chain-based and BFT-style \cite{EthPoSFAQ}. In \emph{chain-based} systems, a validator is pseudo-randomly chosen to be a block \emph{proposers} to create a block which is then extended by future proposers in the rounds that follow. This is meant to simulate Nakamoto PoW consensus. In this case, blocks are probabilistically finalized as they move deeper into the chain. In \emph{BFT-style} PoS blockchains, one of these validators is randomly chosen as a proposer to propose a new block to add to the blockchain in every round. The rest of the validators vote on the inclusion of this new block, with voting power in proportion to the bonds they have staked. Consensus is achieved when the some pre-specified portion of validators agree on accepting the new block. 
+
+\subsection{Model}
+
+\begin{table*}[htp]
+ \caption{Model}
+\label{tab:model}
+\begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
+\toprule
+     & Tendermint & Thunderella & Algorand & Dfinity & Ouroboros G. & Casper FFG & Casper TFG\\ 
+\midrule
+Network Model    & Partial Sync.  & Sync.   & Partial Sync.   & Semi Sync.  & Semi Sync.  & Partial Sync.  & Async. safe  \\
+\addlinespace
+Adversarial Model & Mildly A.  & Mildly A.  & Mildly-Strongly A.  & Mildly A. & Mildly-Strongly A. & unclear & unclear\\ 
+\addlinespace
+Economic Model & \textemdash  & $\epsilon$-Nash  & \textemdash & \textemdash & \textemdash &  \textemdash & \textemdash\\ 
+\addlinespace
+Byz. Safety Tolerates & 1/3  & 1/2  & 1/2 &  1/2 & 1/2 & 1/3 & unclear\\ 
+\addlinespace
+Byz. Liveness Tolerates & 1/3  & 1/4  & \textemdash &  unclear & unclear & unclear & unclear\\ 
+
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsubsection{Network and Computational Synchrony Model}
+In both traditional distributed systems literature and blockchain consensus, we consider the message passing model in which processors communicate by sending messages between bidirectional communication channels \cite{AttiyaWelch}. In blockchain consensus protocols, these nodes form a peer-to-peer network, meaning that every message is propagated to every node in the network via a gossip protocol. Different protocols adopt different timing models based on the environment in which they are designed to function. That is, some protocols are designed to work in unreliable networks that drop messages and may cause arbitrary message delay, like the Internet, whereas other protocols are optimized for extremely reliable channels, like permissioned company intranets. These protocols are said to be operating under differing assumptions of synchrony.  
+
+
+In a \emph{fully synchronous} network, there is a known upper bound on message delay and all messages are received in the exact linear ordering in which they were sent. This assumption is often considered to be unrealistic in practice since it assumes the existence of a global synchronization clock which is practically infeasible in a large, permissionless distributed system \cite{Mahnush}. Full synchrony allows algorithms to operate in rounds, since this upper bound on message transmission exists. 
+
+%todo: how is the following different from the above?
+\emph{Synchronous} networks assume a known upper bound on message delay, however messages do not need to be ordered \cite{Mahnush}.
+
+\emph{Semi-synchrony} also assumes the existence of an upper bound not known a priori, however the distribution of the upper bound is known \cite{Attiya&Lynch}.
+
+\emph{Partial synchrony} assumes the existence of an upper bound on messages transmission delays or the relative speed of process execution, but this upper bound is not known a priori to any nodes in the protocol. This model assumes that the messages sent are received by their recipients within some fixed time bound. In other words, while the messages may be delayed arbitrarily, they are guaranteed to be delivered within the time bound. In the Internet, messages are delivered in a partially synchronous manner \cite{Mahnush}.
+
+%todo: above, is that truly arbitrary delay if it's below some bound
+
+%todo: i am skeptical about the above. are you sure that's the right one?
+
+\emph{Asynchrony} implies that there is no fixed upper bound on how long it takes for a message to be delivered or how much time elapses between consecutive steps of a processor. Messages sent by parties may be arbitrarily delayed and no bound is assumed on the amount of time that it takes for the messages to be delivered \cite{Mahnush}. 
+
+\subsubsection{Adversarial Model}
+Protocols assume different types of adversaries and craft defenses accordingly. In cryptography literature, the corrupted parties can be designated as static or adaptive. \emph{static} adversaries have corrupted a certain number of network nodes ahead of time and exercise complete control over these nodes. They are not able to change which nodes they have corrupted or to corrupt new nodes over time. In contrast, \emph{Adaptive} adversaries have the ability to control nodes and change which nodes they control to maximize their likelihood of impeding network function; that is, they adapt their corruptions as circumstances change. 
+
+There is a spectrum along which adversaries can be adaptive. \emph{Mildly adaptive} adversaries can only corrupt parties based on past messages, and cannot alter messages already sent. Moreover, the adversary may mildly corrupt groups, but this corruption takes longer than the activity period of the group. The adversary can corrupt the proposer and block makers too if chosen ahead of time, as it can anticipate which nodes those will be. \emph{Strongly adaptive} adversaries can see all messages sent by honest parties in any given round, and based on the message content, can decide whether or not to corrupt a party by altering its message or sabotaging message delivery. These corruptions are instantaneous. The protocols we analyze fall at either end of or along this spectrum.
+
+Moreover, there are two major kinds of failure models addressed by consensus protocols: \emph{crash failures}, when processes stop without warning and \emph{byzantine failure}, when processes exhibit any arbitrary type of malfunction \cite{FLP}. Traditional distributed consensus protocols like Paxos \cite{Paxos} and RAFT \cite{Raft}, meant to be executed in non adversarial settings only tolerate crash faults, however, blockchain consensus protocols must be robust enough to operate in adversarial settings and as such must tolerate both crash and byzantine failures. 
+\\\\
+The adversarial model that a protocol can tolerate depends on if the committee selection can be biased, predicted and if the source of randomness used by the protocol is revealed before the start of a new round. Refer to section 4 for further discussions. 
+\subsubsection{Economic Model}
+Given that validators in a PoS framework validate in order to collect potential rewards given for honest validation, it is impossible to divorce a PoS framework for public blockchains from its respective incentive structure. Incentive structures are developed given some assumptions of human behavior. Following traditional economic literature, an protocol can be deemed incentive compatible following a Nash equilibrium or $\epsilon$-Nash equilibrium. In a Nash equilibrium, no actor has an incentive to deviate from their behavior \cite{AlgoGT}. An epsilon Nash equilibrium approximately satisfies the constraints of a Nash equilibrium such that an actor might have a small incentive to deviate from their behavior \cite{PapaD}. The majority of protocols we analyze have not defined incentives and as such do not conduct a formal economic analysis of their protocol. For these protocols we are unable to comment on the economic model.
+
+\subsubsection{Analysis of Model in each Protocol}
+Refer to Table 1 for a succinct presentation of the network and adversarial model of each protocol discussed in this work. Here we explain the nuances of network and adversarial model for the above protocols.
+\paragraph{Tendermint} Tendermint operates in partial synchrony in the proposal step and asynchrony in rounds once the block is proposed. The protocol tolerates a mildly adaptive adversary controlling up to \(\frac{1}{3}\) Byzantine nodes. Tendermint does not specify incentives or conduct a formal economic analysis of their protocol. 
+\paragraph{Thunderella} Thunderella has an asynchronous optimistic fast path with fully synchronous underlying blockchain thus the protocol is ultimately synchronous. The protocol tolerates a mildly adaptive adversary handling adaptive security with erasures in the random oracle model. The adversary is in charge of scheduling message delivery such that they cannot modify contents broadcast by honest parties, but can reorder and delay them. An $\epsilon$-Nash equilibrium is specified against any coalition that controls only a minority of the total computation power, such that an adversary in this case cannot earn more than its fair share of rewards. This is based on Pass and Shi's concept of fairness outlined in Fruitchains \cite{fruitchains}.
+
+\paragraph{Algorand} Algorand provides safety under partial synchrony such that after an asynchronous period, the network must be strongly synchronous for a reasonably long period again. The protocol ensures liveness under synchrony. Algorand tolerates an adversary between a mildly adaptive and strongly adaptive adversary in that the adversary may temporarily fully control the network and immediately corrupt users in targeted attacks because of immediate player replaceability. Algorand does not specify incentives or conduct a formal economic analysis of their protocol. 
+\paragraph{Dfinity} Dfinity practically operates in partial synchrony, however is only formally proven in synchrony. The protocol can tolerate a mildly adaptive adversary and does not specify incentives or conduct a formal economic analysis of the protocol.
+\paragraph{Ouroboros Genesis} Ouroboros Genesis guarantees safety under partial synchrony and tolerates an adversary that we classify as between mildly and strongly adaptive adversary; the adversary can corrupt any participant at any moment under the assumption that the majority of the stake is held by honest nodes and the existence of an upper bound on message delay. In this model, desynchronized parties have their stake considered adversarial until some $d$ rounds pass, and they are full synchronized again. Ouroboros Genesis does not specify incentives or conduct a formal economic analysis of the protocol.  
+\paragraph{Casper FFG} Casper FFG does not provide a comprehensive discussion of synchrony, but states that all clients have local clocks that are perfectly synchronized with any discrepancy treated as part of a known communication delay, thus we consider the protocol as partially synchronous. The protocol does not discuss its adversarial model, and does not specify incentives or conduct a formal economic analysis. 
+\paragraph{Casper TFG} Casper TFG provides asynchronous safety in that blocks won't be reverted due to the arbitrary timing of future events, and provides liveness given some synchrony assumption. The safety proof holds with arbitrary byzantine behavior. The types of byzantine behavior nodes might encounter include crash faults, nodes generating invalid messages, and equivocation. The protocol does not specify incentives or conduct a formal economic analysis. 
+
+\section{General Solution Steps and Challenges}
+This section presents high level overview of all of the features we will compare the protocols with. Later sections will go in depth into protocol comparison for each given parameter.
+
+\subsection{Proposer and Committee election and Randomness generation}
+Proposer and committee election refers to the process of selecting a validator (or group of validators) to be a proposer or committee member in a round of a BFT based protocol. The proposer/committee is usually responsible for selecting the next block that is proposed and propagated to the rest of the network. Protocols deal with proposer/committee failures differently. \emph{Random generation} refers to the mechanism by which decentralized randomness is created if the protocol employs randomness in any of its components. Randomness is most often employed in proposer and committee election.
+ 
+\subsection{Propagation}
+A crucial part of consensus in any protocol is to be able to have a majority of validators decide on the same value. In order to do so, the information of that value has to spread from its origin to the rest of the network. \emph{Propagation} is the act of dispersing information within a network. Most protocols use a form of gossiping to take advantage of the connectivity of nodes to spread information.
+
+\subsection{Finality}
+Blockchains are notorious for being "immutable". By that standard, each block within the chain should be finalized ideally as quickly and efficiently as possible. BFT based protocols are able to decidedly finalize blocks; i.e., all well-formed blocks will, eventually, irrevocably be committed to the blockchain. On the other hand, Chain-based protocols can only guarantee probabilistic finality.
+
+\subsection{Handling Churn}
+\emph{Churn} describes change in a set of participating nodes due to joins, leaves, and failures. \cite{GodfreyEtAl} Given the public nature of blockchains, protocols must be able to effectively deal with churn of proposers and validators. Every blockchain platform must be able to handle users joining and leaving the network.
+
+\section{Algorithms of Relevant Protocols}
+Below, we provide a high level overview of the relevant protocols. We assume a working knowledge of these protocols. Note that some of these protocols may differ in practice than in their papers.
+ 
+\subsection{Tendermint}
+Tendermint \cite{Buchman} is based on an algorithm outlined by Dwork et al in their landmark paper Consensus in the Presence of Partial Synchrony \cite{DworkEtAl}. A BFT-style protocol, Tendermint assumes a static committee and a proposer that is deterministically selected every round to compile and propose a block, with the rest of the committee trying to achieve a \(\frac{2}{3}\) supermajority of votes for that block in two distinct rounds. 
+  
+\subsubsection{Proposer \& Committee election and Randomness   generation}
+Tendermint has a new proposer every round, however, this proposer is not selected through randomness. Rather, the proposer is elected via deterministic round robin between validators (those who have staked) such that there is one proposer per round who proposes a block. The frequency with which a validator is selected as a proposer is equal to the validator's share of the total stake. Thus, if a validator owns \(\frac{1}{4}\) of the total stake; the validator will be selected as a proposer \(\frac{1}{4}\) th of the time before the end of the round robin. Given the deterministic nature of proposer selection, network participants can determine who the proposer is in any given round.
+The committee is likewise deterministically selected and composed of validators. Validators are those who have locked their coins for the duration of the staking period, demonstrating their willingness to participate in the network as validators. There is no randomness being generated as part of this process.
+
+\subsubsection{Propagation and Creation of Blocks}
+Consensus proceeds, as follows, in multiple rounds such that each round has one proposer:
+\begin{enumerate}
+    \item First, a proposer is chosen from the validator-set to propose a new block.
+    \item Then that proposer compiles and proposes a block.
+    \item The next step is a Pre Vote: if \(\frac{2}{3}\) validators agree on the aforementioned block, then the protocol moves onto the pre-commit stage.
+    \item In the Pre Commit phase, if \(\frac{2}{3}\) of validators agree on the same block that was pre-voted, then all honest nodes commit that block and move to new block height (starting the process at step 1 again).
+\end{enumerate}
+If a block is not proposed in time or block does not receive enough votes in the pre-vote or pre-commit, then a new round occurs where a new block is proposed at the same height.
+
+\subsubsection{Finality}
+A block achieves absolute finality if it achieves \(\frac{2}{3}\) or more pre votes and pre commits. This process continues indefinitely unless \(\frac{1}{3}\) or more validators become unresponsive, in which case the network halts. Above, we see that this protocol prefers consistency over availability.
+
+\subsubsection{Handling churn (join and leave)}
+Tendermint handles rotating validator-sets by allowing updates to the validator-set by specifying public keys and updated voting power for a new set of validators. To remove validators, the protocol simply sets their voting power to 0. Validators that haven't signed for a protocol specified number of blocks, are considered timed out and implicitly unbonded. When validators stake, they lock up their funds for a particular bonding period. To unlock their funds, they must specify their intent to do so and then wait for a 2-3 month unbonding period. This allows for the knowledge of how the validator-set will change and mitigates the nothing at stake problem.
+
+\subsection{Thunderella}
+Thunderella \cite{Thunderella} builds on top of Pass and Shi's Sleepy Consensus \cite{Sleepy} and Snow White \cite{SnowWhite}, to provide the basis for a scalable
+ Proof of Stake protocol involving layering a 'fast path' which allows for optimistic instant confirmations of transactions over a slow underlying blockchain. 
+
+\subsubsection{Proposer and Committee election and Randomness generation}
+
+Thunderella elects a proposer in the BFT overlay subset of the protocol, however the specific method of selecting a proposer is decided by the implementing application. Committee selection methods are also left up to the decision of the application as well, however three different options are suggested:
+\begin{enumerate} \item Implement a Random Oracle which is secure against slow corruptions either using a \emph{hash function}, function that takes any input and returns fixed-size output, \indent and seeding it like in Snow White
+\cite{SnowWhite} or  \emph{pseudorandom function (PRF)}, a function family which cannot be significantly distinguished by an efficient algorithm from a truly random oracle, like in Sleepy. \cite{Sleepy}.
+\item Implement a Random Oracle and VRF which is secure \indent against adaptive corruptions using Algorand's model.
+\item Use recent validators to form committee as long as the underlying blockchain is fair. This method is secure against slow corruptions.
+\end{enumerate}
+
+In all cases, if there are too many validators eligible to vote, the protocol considers random down-selection to reduce bandwidth consumption. This down-selection can be conducted with a random oracle or random oracle and VRF.
+A \emph{random oracle} is an abstract black-box that generates truly random numbers \cite{Mahnush}. A \emph{verifiable random function (VRF)} is a psuedo-random function where each output is unpredictable given the knowledge of all prior outputs. Each output has publicly verifiable proofs of output correctness. \cite{MicaliEtAl} 
+
+\subsubsection{Propagation and Creation of Blocks}
+The 'fast path' of the protocol has an accelerator, which acts as the proposer in proposing blocks, and a committee, which verifies proposed blocks. If the Accelerator and \(\frac{3}{4}\)  of the committee is honest, then the protocol proceeds as follows:
+\begin{enumerate}
+    \item The Accelerator proposes transactions with associated sequence numbers. 
+    \item The Accelerator signs transactions and sends these to the rest of the committee. If a \(\frac{2}{3}\) supermajority of the committee acknowledges then the transaction is considered notarized.
+\end{enumerate}
+If either of the above does not hold, the protocol enters slow mode, falling back to the underlying blockchain and their protocol for creating blocks and propagating them.
+
+\subsubsection{Finality}
+Any maximum sequence of transactions with no gaps that has been notarized is considered fully confirmed output. Transactions are considered probablisitically finalized after they are some $k$ blocks deep into the slow chain, where $k$ is the security parameter specified by the implementing protocol. 
+
+\subsubsection{Handling churn (join and leave)}
+Thunderella handles churn as it supports robust committee reconfiguration defending against posterior corruptions. Robust committee reconfiguration means that committees in Thunderella are chosen such that each committee remains honest although not necessarily online until the honest chains are roughly the clock time for the current tx($c$) + 4 * security parameter($k$) ($c$ + 4$k$), since notarization transactions are only considered legitimate if included in the blockchain by length ($c$ + 2$k$). Posterior corruptions refer to a set of users possibly holding majority of stake sometime in past selling their stake at some point and from that point onward such that they might be incentivized to act maliciously (eg. by forking and double spending old money). Thunderella suggests the following reconfiguration approaches: 
+\begin{enumerate}
+    \item Use underlying blockchain to establish IDs of recent miners and have only recent miners form the committee. 
+    \item Have stakeholders act as committee.
+\end{enumerate}
+
+\subsection{Algorand}
+Algorand \cite{Gilad} is a protocol devised by Silvio Micali employing Micali's Verifiable Randomness Functions (VRFs) to choose proposers and committee members secretly and utilizes a Byzantine Agreement algorithm to reach consensus. Our analysis of Algorand is based on the 2017 ACM publication. As Algorand is being implemented in practice, the specification may deviate from the original protocol.
+
+\subsubsection{Proposer and Committee election and Randomness generation}
+Algorand chooses committee members and proposers randomly among all users based on the users\’ weights using a technique called cryptographic sortition. This is a private non-interactive method where every validator in the system can independently determine if they are in the committee by running the VRF on their private key and info from blockchain. A VRF is a psuedo-random function where each output is unpredictable given the knowledge of all prior outputs. Each output has publicly verifiable proofs of output correctness. Here, the VRF generates a proof which the validator can include in their message to prove to other validators that she is in the committee. Multiple people can be selected as proposers and a person may be given multiple votes in a committee (based on their proportion of stake). In Algorand, each user is treated as a collection of unit value sub-users. The rank of a proposer is thus chosen based on the highest priority of each sub-user.
+\\\\
+Using the VRF: $VRF_{sk(x)}$ returns two values: a hash $h$ and a proof $p$. The hash $h$ is uniquely determined by $sk$ and $x$, but is indistinguishable from random to anyone that does not know $sk$. The proof $p$ allows someone to check that the hash of $x$ by person with public key $pk$ matches the hash $h$ without knowing $sk$. $VRF$ provides these properties even if $pk$ and $sk$ are chosen by an attacker. Thus an attacker doesn't know if a person was chosen until they send a message which includes the hash and proof. 
+\\\\
+Selection of Committee size: The committee size is based on a calculation which depends on the number of honest validators in Algorand, the threshold of honest validators in the committee and the acceptable probability in which there will be more than the threshold number of malicious validators in the committee. 
+
+\subsubsection{Propagation and Creation of Blocks}
+Creation and propagation proceeds as follows. There is at least one block proposed. To minimize cost of gossiping unnecessary blocks, a sortition hash is used to prioritize block proposals. (priority of a block = priority of validator who proposed block i.e the value of sub validator index that has the highest priority). Since each validator can be chosen multiple times in a round to be a proposer or in the committee, each time, the validator is given a new index and key pair. This new index and key pair is the referred to as the $sub\,validator \,index$.
+The agreement protocol consists of two phases: 
+\begin{enumerate}
+    \item BA*, a Byzantine Agreement protocol, reduces the problem of agreeing on a block to agreement on one of two options by narrowing down one non-empty proposed block to agree on.
+    \item 2) BA* reaches agreement on one of these options: either agreeing on a proposed block, or agreeing on an empty block. 
+\end{enumerate}
+
+
+\subsubsection{Finality}
+In strong synchrony, BA* designates consensus on value $V$ as final if the algorithm reached agreement in the first step, and if enough validators observed this consensus being reached. A block that is a predecessor of a finalized block also becomes finalized. Final blocks guarantee that no other block could have reached consensus in the same round. This means that all final blocks are totally ordered with respect to one another, since (1) blocks form a linear chain, and (2) there can be exactly one final block at any given position in the chain. In the case of weak synchrony, BA* may have forks and thus may only be able to reach tentative consensus. To resolve these forks, Algorand periodically proposes a fork that all validators should agree on, and uses BA* to reach consensus on whether all validators should, indeed, switch to this fork. All validators passively keep track of all forks and at every time interval they run the recovery protocol (where they agree on forks instead of blocks) to sync up the system.
+
+\subsubsection{Handling churn (join and leave)}
+Algorand handles joining in the following manner. Gossip peers are replaced every round, so if a validator gets disconnected, this replacement helps a validator recover. To help new validators catch up, Algorand generates a certificate (an aggregate of votes from the last step of BA* except the final step which allows any validator to reach the same conclusion by processing the votes) for every block that was agreed upon by BA*. Certificates speeds up the validation process of old blocks for new validators. A validator can also request a collection of votes on the final step of a block (but only really needs to ask this for the latest block because if the last block was final, everything before it was also finalized). The protocol supports leaving, assuming that most honest validators (e.g. 95\%) can send messages that will be received by most other honest validators (e.g. 95\%) within a known time bound. This requires most validators to be online. Further validators need to be online to know if they were chosen to be in the committee/ proposer of every round.
+
+\subsection{Dfinity}
+
+Dfinity \cite{Dfinity} is an alternative consensus protocol using a decentralized key generation protocol instead of a trusted third party as a source of randomness. Dfinity uses weighted proof of stake, where anyone can propose blocks but proposals are ranked based on the randomness seed for the round. The protocol employs the concept of notarizations, a version of optimistic consensus referring to a threshold signature from a majority of nodes under a block created jointly by registered clients, allowing for near instant finality. These properties ensure faster growth of the blockchain by allowing for proposals to continue to be made before previous proposals are finalized, in a way almost parallelizing proposing and validating. 
+
+\subsubsection{Proposer and Committee election and Randomness generation}
+Dfinity generates randomness via a decentralized random beacon, using a Threshold Relay DKG scheme \cite{JF-DKG}. \emph{Random beacon} refers to the protocol for generating randomness. Dfinity makes use of BLS signatures, distributed key generation, and threshold cryptography. \emph{BLS} refers to Boneh-Lynn-Shacham signature scheme which allows users to verify if a signer is correct\cite{BonehEtAl}. \emph{Distributed key generation} is an encryption process in which multiple parties collectively generate shared public and private keys such that the public key is outputted while the private key is shared amongst the parties via a threshold secret sharing scheme\cite{Mahnush}. \emph{Threshold cryptography} refers to any scheme in which a message is encrypted using a public key and the corresponding secret key is shared among $n$ parties. To decrypt the message, at least $t$ parties are required to cooperate in the decryption algorithm \cite{Mahnush}.
+
+This scheme proceeds as follows: 
+\\
+1) Setup:
+    \begin{itemize}
+        \item Distributed Key Generation algorithm is run for $t$ of \indent $n$ BLS signature scheme to setup the group's public key. 
+        \item The secret key shares are distributed. 
+        \item There is a verification vector ($v$) that gets committed \indent to the blockchain. The public key ($pk$) for the group ($G$) can be derived as follows from the verification vector: $pk_{G,i} = \prod_{j=0}^{t-1} v_j^{i^j} \epsilon  \mathbb{G}_2 $ where $i$,$j$,$t$ are indices
+    \end{itemize}
+2) Signing Process: When the first notarization for round $r$ - 1 is seen, all the validators enter the next round and try to compute the randomness using equation: 
+\\ \indent \indent $\sigma_{r,i} = Sign (r || \xi_{r-1},sk_{G,i})$ where $\xi_{r-1}$ is the random \indent \indent value of round $r-1$
+\\
+When any validator receives at least $t$ valid signatures, she can recover the randomness for that round by running the threshold recovery algorithm. The random beacon output in one round chooses the committee for the next round according to a threshold relay technique, which is the process of randomly sampling validators into groups, setting the groups up for threshold operation, choosing the current committee, and relaying from one committee to the next.
+The sub-committee size is chosen based on the equation below:
+\\ \indent 
+$Pr[G \; honest] \geq CDF_{binom}( \lceil{n/2} \rceil -1,n,\frac{1}{\beta})$ where \indent 1/$\beta$ is the adversarial strength.
+\\
+The threshold relay is used to split validators into multiple groups. One of the $\alpha$ groups each of size $z$ is chosen as the committee for beacon protocols and notarizations in that round. The committee for the beacon protocol is responsible for generating randomness for round $r$ + 1 and the notarization committee runs the protocol. 
+
+\subsubsection{Propagation and Creation of Blocks}
+Propagation and creation of blocks involves the following three steps: 
+\begin{enumerate}
+    \item Producing a random beacon output (described above): The random beacon output for round $r$ determines a priority ranking of all registered validators and determines the committee members.
+    \item Producing block proposals:
+    \begin{itemize}
+        \item The proposer selects the heaviest (based on most notarizations) valid chain $C$ with len $C$ = $l$ that it knows of.
+        \item The new proposed block $B$ references the last block on $C$ and is composed of the selected transactions. This block is then broadcast to request for notarizations.
+    \end{itemize}
+    Blocks will be optimistically agreed upon by all notarization committee members based on the priority ranking which the decentralized beacon decides in the notarizations round. This block is then broadcast to the other validators.
+    \item Producing block notarizations:A block is said to be notarized when it has majority of the notary committees signatures in that round. Block notarizations are producing in the following manner.
+    \begin{itemize}
+        \item Check Validity: a proposed block $B$ is considered valid for round $r$ if $rd(B) = r$ and there is a valid block $B'$ such that:
+        \begin{itemize}
+            \item $prev(B)=H(B') \, \textrm{ and } \, rd(B') = rd(B-1)$
+            \item $nt(B)$ is a notarization of $B'$, 
+            \item $dat(B)$ is valid where $dat(B)$ is data payload
+        \end{itemize}
+        \item Sign off until sufficient signatures: After BlockTime, each member of the notary committee signs all highest priority blocks for the current round that it has received and broadcasts a signature message for this block to the entire network. This process continues until the protocol observes a notarization for the current round. The notarization signals the start of a new round.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Finality}
+Dfinity maintains two definitions of finality, optimistic finality through notarizations and general finality. With optimistic finality through notarizations only notarized blocks can be included in a chain. Validators only notarize the highest-ranked blocks with respect to a publicly verifiable ranking algorithm driven by the random beacon. Notarization can be seen as optimistic consensus as usually only one block gets notarized and can be detected after one subsequent block plus a relay time. Whenever the broadcast network functions normally, a transaction is final in the consensus after two notarized confirmations plus a network traversal time. However, notarization is not consensus because it is possible, due to adverse timing, for more than one block to get notarized at a given height. The finalization protocol is passive and built on top the notarization protocol.
+
+\subsubsection{Handling churn (join and leave)}
+Dfinity handles churn as follows: 
+\\
+Epochs: The block produced in the first round of each epoch is a registry block (also called key frame) and contains a summary of all new registrations and de-registrations of validators that happened during the previous epoch that just ended.
+\\
+Registration: A validator can request to join the network (i.e. register) or leave the network (i.e. de-register) by submitting a special transaction for that purpose. A registration transaction contains the public key of the new validator plus an endorsement proving that she was allowed to register. The registration gets activated in $e$ + 2 epochs once the transaction is included in the blockchain.
+\\
+Pooling: A system parameter, $M_{max}$, governs how many different pools can form during an epoch. Members of the pool create a registration transaction for $G$ which contains the tuple $x$ = ($e$, $j$, $pk_{G}$) and has to be included in the blockchain in epoch to get registered. Pools are automatically de-registered after a certain time period.
+
+\subsection{Ouroboros Genesis}
+Ouroboros Genesis \cite{Genesis} is a Proof-of-Stake (PoS) based consensus protocol that employs a novel chain selection rule to allow robust bootstrapping of the blockchain without external knowledge. This allows new validators to verify the true longest chain with only knowledge of the genesis block. Ouroboros Genesis uses a locally evaluated “lottery” via VRF to select a proposer that creates and proposes a new block, only revealing that she is the proposer through the broadcast of the block, ensuring security.
+
+\subsubsection{Proposer and Committee election and Randomness generation}
+The first step in Ouroboros Genesis is the Initialization functionality, which is called upon by a validator to become operational. There are two cases for this depending on the block during which the functionality is called:
+\begin{enumerate}
+    \item Genesis Block: a validator that calls Initialization during the genesis block does so to claim her stake
+    \item Non-Genesis Block: a validator that calls Initialization during a non-genesis block queries the functionality to receive the genesis block and uses the stake distribution to determine the threshold to potentially become a proposer
+\end{enumerate}
+Next, is the Staking Procedure. In this step, each validator locally evaluates a VRF to determine if they are elected to be the proposer. The VRF uses the validator’s secret key and takes as input the round index and epoch randomness. It then outputs a hash and a proof - if the hash is below a certain threshold then the validator is elected proposer (there can be multiple proposers as well). The stake distribution and epoch randomness are updated at the beginning of each epoch. Honest validators are also mandated to update their private key in each round - they do so via the key evolving signature scheme (KES) employed. A \emph{key evolving signature scheme} is one in which both the secret key and public key can evolve. The signer can invalidate the extorted signature by updating the public key. \cite{ItkisXie}
+
+\subsubsection{Propagation and Creation of Blocks}
+The proposer(s) creates and signs a new block and appends it to the end of the blockchain (from her view). She then broadcasts that new chain to her peers to propagate the new block so that everyone else can accept it. She includes the VRF output and the proof as her eligibility to be proposer. The other parties in the network can then verify that she is a proposer for this round and choose to accept the new longest chain or not. Over time, blocks are continually added to the longest chain, thereby guaranteeing liveness.
+
+\subsubsection{Finality}
+Ouroboros Genesis employs a longest chain rule meaning this PoS model is chain-based. That means that finality is probabilistic and is dependent upon the proposed new chain selection rule. The chain selection rule proceeds as follows: 
+\begin{enumerate}
+    \item Short Range (up to $k$ blocks): simply follow the longest chain.
+    \item Long Range (more than $k$ blocks): use the plenitude rule, meaning look at the period of time right after the fork occurs off the current chain and choose the denser of the chains as the right one.
+\end{enumerate}
+
+\subsubsection{Handling churn (join and leave)}
+Ouroboros Genesis is built upon the idea of supporting Dynamic Availability. To that extent, it handles the fluidity of varying validators entering and exiting the system effectively given that it is a chain-based protocol. It does so without trusting any other validators or making any assumptions/estimations on how many validators are involved. New validators only need the genesis block to re-build the blockchain and can do so without external verification from other validators (similar to many PoW protocols). But they need to interact with other validators to synchronize with the system and continue to participate. Any validator that wants to participate in the protocol must go through a registration process where she makes sure she is registered with the necessary resources - random oracle, clock, ledger. Among these, registering with the ledger is a bit of a complex process: the validator must check that she is first registered with the other two resources, then if so, register with the other functionality in the system, and finally store the current time (to determine the last time this validator was connected to all resources). After doing the above, any validator is free to engage in the protocol. \emph{Deregistration} is a very similar process, just with the opposite outcome.
+
+\subsection{Casper FFG}
+Casper Friendly Finality Gadget (FFG) \cite{FFG} is a Proof of Stake protocol that Ethereum is in the process of employing as a transition method for switching from purely PoW system to purely PoS system. Casper FFG overlays already existing PoW systems by establishing a PoW/PoS hybrid model. It is a chain-based system that uses PoW style consensus on every block except for every 100th, which uses PoS style consensus. The PoS-style consensus uses a voting based method weighed by the staked deposits of validators in a validator-set using forward and reverse stitching of validator-sets to guarantee finality with \(\frac{2}{3}\) of validator votes.
+
+\subsubsection{Proposer and Committee election and Randomness generation}
+FFG maintains a validator-set by locking up a validator’s “deposit” as a means of showing they have stake in the system. Anyone can self-select into the validator pool as long as they meet the minimum staking requirement (exact amount has yet to be decided upon). The protocol does not have a proposer and does not employ any method of randomness generation.
+
+\subsubsection{Propagation and Creation of Blocks}
+This version of Casper is simply an overlay that helps with finality on an already existing blockchain. The actual propagation and creation of blocks is assumed to occur in the underlying system. FFG relies on the underlying PoW system, but plans to eventually move to something that is more efficient.
+
+\subsubsection{Finality}
+The most important aspect is that even if a malicious attacker has control of the underlying proposal mechanism, FFG will not finalize conflicting checkpoints. It uses BFT theory to prevent finalization on any block or checkpoint without a \(\frac{2}{3}\) supermajority. It does so by using a unique stitching mechanism via a “forward validator-set” and a “rear validator-set” to show how the overlap of the two ensures at least \(\frac{2}{3}\) of the members of any dynamically changing validator-set agree on the same block. A \emph{supermajority link} is an ordered pair of checkpoints ($a$, $b$) such that \(\frac{2}{3}\) of validators have published votes with that pair. The source($a$) and target($b$) do not need to be contiguous. 
+\subsubsection{Handling churn (join and leave)}
+Dynamic validator-sets are handled using the idea of a \emph{dynasty} of a block, the number of finalized checkpoints from the root to the parent of the current block. A new validator is required to include a “deposit” for their stake in a block with dynasty $d$. That new validator will join the validator-set at the first block with dynasty $d$ + 2. Similarly, a retiring validator must include a “withdraw” in block with dynasty $d$ and will actually be removed from the validator-set at dynasty $d$ + 2. Any validator that leaves the validator-set will have their corresponding public key forever forbidden from rejoining that validator-set again. This is done as a means of reducing overhead in terms of handling entry/exit/re-entry and not as a form of punishment or deterrence. At the start of block with dynasty $d$ + 2, the retiring validator's stake is locked up for a long time (on the order of 3-4 months worth of blocks) as a safety guarantee. Any violation of protocol policy will cause these funds to be taken away i.e. slashed.
+
+\subsection{Casper TFG}
+Casper CBC is a family of "Correct by Construction" consensus protocols developed by Vlad Zamfir at Ethereum. Casper The Friendly Ghost (TFG) \cite{TFG} is the protocol amidst this set of protocols which applies the CBC framework to blockchain consensus. TFG is currently a work in progress, with a comprehensive safety framework and finality provisions in that nodes make decisions on safe estimates, but in depth details regarding liveness and protocol specifics are being developed for later inclusion. 
+
+\subsubsection{Proposer and Committee election and Randomness generation}
+TFG does not specify any particular method of proposer or committee election method, and does not rely on random generation although some liveness strategies that they may employ may require some randomness. 
+
+\subsubsection{Propagation and Creation of Blocks}
+Validators create blocks according to any strategy ensuring liveness with some synchrony assumption and less than some number of faulty nodes. Blocks are gossiped from there. No specific recommendations are currently provided on a strategy for block creation ensuring the above parameters although some validator strategies are in the works.
+
+\subsubsection{Finality}
+Any two validators can make final decisions as soon as they detect safety on blocks that would require greater than their fault tolerance threshold weight of validators to equivocate before a conflicting block could be finalized. When validators equivocate, a fault tolerance threshold is reached, so if the amount of safety on a block is greater than the validator’s fault tolerance threshold, the node is safe to make a decision on it. Fault tolerance thresholds are subjective in that different validators can have different fault tolerance thresholds. In the case two validators have different fault tolerance thresholds $f$ and $f'$, then they have consensus safety if the union of their views has less than min($f$, $f'$) faults. 
+
+\subsubsection{Handling churn (join and leave)}
+TFG handles validator-set rotation with dynamically changing sets of consensus forming nodes and / or their weights. The safety proof holds with dynamic validator-sets. Future validators cannot affect the fork choice of blocks before they were introduced, or they would affect the safety of those blocks. Thus, the validator selection method adds a weight map to each block that specifies the validator-set for the fork choice from among its children, as they cannot affect blocks in the past. This allows for the rotation of validator-sets without requiring that the rotation is finalized. 
+
+\section{Security of randomness of different schemes}
+
+\begin{table*}[htp]
+ \caption{Security of Randomness Model}
+\label{}
+\begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
+\toprule
+                 & Tendermint & Thunderella & Algorand & Dfinity & Ouoroboros Genesis  & Caspser FFG & Casper TFG   \\ 
+\midrule
+Predictable    & Yes  &  Yes & Yes   & No & Yes & Yes & N/A   \\
+\addlinespace
+Biasable & Yes   & Yes  & Yes & No & Yes & Yes & N/A \\ 
+\addlinespace
+Revealed before current round & Yes  & Y/N  & No & Yes & No & Yes & N/A\\ 
+\bottomrule
+\end{tabularx}
+\end{table*}
+\\\\
+This section analyzes the randomness generation of each of the protocols. Randomness is an important part of every protocol because it impacts committee and proposer selection. A predictable or biasable source of randomness would reduce the strength of an adversary that the protocol can tolerate. Hence it is important to understand how an adversary can benefit from the randomness scheme that a protocol uses. As such, we look at two kinds of adversaries: an active adversary and a passive adversary\cite{Mahnush}. A \emph{passive} adversary is one who would try to predict the outcome of the randomness, without interacting with the randomness scheme in any manner i.e the adversary is merely capable of observing all the interactions of other users with the randomness scheme. A protocol which has \emph{predictable} randomness means that given the inputs to the randomness scheme, there exists some stage in the protocol in which the output of the randomness generation function does not appear completely random to an adversary i.e some output values are more likely than other output values. More formally, no party learns anything about $rnd_r$, except with negligible probability, until they have gathered at least $t$ randomness shares in round $r$. While having an unpredictable source of randomness plays a significant role in securing a protocol, a good randomness scheme should also be able to defend against an active adversary. An \emph{active} adversary tries to tamper with the protocol by modifying the inputs to the randomness generation function with the goal of changing the resulting randomness output for a round. This is referred to as \emph{biasable}. More formally,  The output $rnd_r$ of round $r$ represents an unbiased, uniformly random value, except with negligible probability. The adversary may or may not be able to determine the resulting randomness seed. Thus the ability of an adversary to bias the randomness seed is independent of the adversary's ability to predict the randomness function's output. It is also useful to understand if a protocol reveals the randomness seed before the current round because leaking of the seed ahead of time enables the adversary to learn the proposers and committee ahead of time. This information can be used by an adversary in an attempt to corrupt the chosen committee or proposers from the time when the seed was leaked to the time the new round starts.
+\\\\
+It is also important to note that Random Oracle is a theoretical construction. In practical implementations, only a Pseudorandom Function is available and is used as an approximation of the Random Oracle. 
+\\\\
+Table 2 compares the security model of the  randomness schemes used by each of the protocols. The reasoning behind the results that are seen in Table 2 are explained in the sections below.
+
+\subsection{Biasable and Predictable}
+In this section we explain why the randomness schemes of each of the protocols can be biased or are bias resistant. 
+\\\\
+Below we describe the Randomness schemes for Tendermint, Algorand, Dfinity, and Casper FFG. Thunderella and Ouroboros use a randomness scheme similar to what Algorand proposes. Thunderella also suggests another randomness scheme described in Snowwhite \cite{SnowWhite} which we analyze below. Casper TFG doesn't have a proposed randomness scheme yet. 
+\subsubsection{Tendermint}
+Tendermint uses a deterministic round-robin protocol scheme to choose proposers; there is no randomness in the protocol. Proposers are elected deterministically, through a heap sort based on the voting power and number of times the validator was chosen. The protocol can only be biased by adding or removing stake since that is the only input the adversary can access. The protocol cannot be biased instantaneously because of the long time it takes for a validator to \emph{unbond} i.e remove stake from the system or \emph{bond} i.e add stake to the system. Nevertheless, an attacker can plan ahead to bias the choice of proposer in a longer time frame.
+\\\\
+Since Tendermint uses a deterministic round robin algorithm, one can predict who the proposer could be for that round. 
+\subsubsection{Algorand}
+TODO: Make it sound less extreme. 
+The randomness scheme in Algorand is as below:
+each validator $v$ selected as a proposer computes a seed for round $r$ using the equation $< seed_r, \pi >$ $\leftarrow$ VRF$_{sk_{v}}(seed_{r-1}||r)$ where $sk_v$ is the secret key of validator $v$ and $seed_{r-1}$ is the randomness seed of the previous round.
+\\\\    
+The VRF proof $\pi$ and the seed for round $r$ are contained in the block accepted in round $r-1$. If the given VRF proof doesn't verify the given seed, then everyone computes the seed for the new round as H$(seed_{r-1}||r)$ where H is a hash function. This means that the secret key of each validator has to be chosen well in advance to ensure that they can't bias the seed.
+\\\\
+When the network is not strongly synchronous, the attacker has complete control over the message passing links, and can therefore drop block proposals and force users to agree on empty blocks, such that future selection seeds can be computed. Algorand thus requires the \emph{weak synchrony} assumption that in every period of length $u$, there must be a strongly synchronous period $s$ of length $s < u$ for the protocol to be bias resistant.  As long as $s$ is suitably large enough that at least one honest block was produced in a time period of $b$, an adversary $v'$ choosing a key $sk_{v'}$ cannot bias the randomness seed for round $r$. 
+\\\\
+In all scenarios that the randomness is biasable, it is also slightly predictable since it enables the adversary to reduce the probability of occurance of certain outputs. 
+\subsubsection{Dfinity}
+In several protocols adversaries usually abort the protocol to invoke the fall back mechanism, and thus introduce bias. The threshold scheme that Dfinity uses is bias resistant because the threshold is chosen in a way that ensures an adversary cannot abort the protocol by preventing a \emph{threshold signature} from which the randomness seed is derived from being created. This requires $t$ the threshold to be chosen according to the equation: 
+$t \in [f+1, n-f]$ where $f$ is the number of signatures the adversary controls,  
+$n$ is the total number of signatures in the scheme, and $t$ is the threshold of signatures required to generate randomness. This threshold is chosen to ensure that an adversary cannot predict the outcome of creation of a signature nor can the adversary prevent its creation. 
+\\\\
+One caveat is that if an adversary has more than 50\% of all deposits in any BLS scheme they would be able to manipulate the final signature and randomness. However if an adversary had such a huge portion of stake there are other adversarial attacks and this breaks the fundamental assumptions of the Dfinity protocol.
+\subsubsection{Thunderella}
+In the Random Oracle scheme instatiated with a Hash Function described in \cite{SnowWhite}, a proposer is determined by the equation:
+H$^{nonce}(pk, q) < D_p$ where H is the Hash function which is used as the Random Oracle, $pk$ is the public key of the validator, $q$ is the given time-step and $nonce$ is the source of entropy to the hash function. The $nonce$ is chosen by the proposer of the previous block. The difficulty parameter $D_p$ is set such that a committee member is elected as the proposer with probability $w$ in a single time step. 
+\\\\
+If the adversary proposes a block, she can bias the nonce used to generate entropy for the hash function of the next round, thus biasing the proposer elected in the next block. However, to mitigate the biasability of the randomness scheme, the same nonce is used in the Hash function to select proposers for $r$ rounds rather than to merely select the next proposer. This makes it computationally harder for an adversary to brute force a nonce that will enable them to be the proposer for the next $r$ rounds. While this strategy guarantees only a polynomial security loss, it comes with a predictability trade-off discussed later. This scheme results in being able to tolerate only a slow adaptive adversary
+\\\\
+In the above algorithm, when the same nonce is reused to seed the Hash function it leads to an adversary being able to predict the proposers ahead of time. 
+%\subsubsection{Ouroboros Genesis}
+%The randomness generation scheme to select proposers that Ouroboros uses is similar to what Algorand uses with a VRF. In addition to using randomness for proposer election, Ouroboros also uses a randomness seed at every Epoch. 
+%\\\\
+%The randomness seed is updated at the beginning of each epoch; the randomness seed of the epoch is derived from hashing the previous epoch's randomness with the current epoch number and the output of certain values from the first 2/3 blocks of the previous epoch. 
+%\\\\ 
+%Ouroboros' randomness generation is biasable because an adversary can generate the right values to place in the first 2/3 blocks of the current epoch in order to bias the next epoch's randomness. This is commonly referred to as a \emph{stake grinding} attack and would require a large amount of computation but nevertheless is possible.  Given their novel chain selection rule, it is possible that an adversary that successfully biases the epoch randomness would attempt to elect himself multiple times in a future epoch, thereby allowing him to carry out other attacks like a \emph{selfish mining attack} wherein he can create a personal longest chain that the rest of the network is unaware of (to fork the blockchain at a recent point of time) or possibly create multiple blocks in a short amount of time to add density to his chain (to fork the blockchain at an old point of time).%
+\subsubsection{Casper FFG}
+The randao scheme that Casper FFG plans to use is dependent on the algorithm below: 
+\\\\
+Every validator at the start of an epoch commits $H(H(H( .. S_v))))$ where 
+$S$ is the seed the validator commits to. $R := R \oplus $ Pre-image of the inner layer of hash.
+At a round, a validator can either make a block or abort. 
+\\\\
+If in the fall back mechanism no randomness is generated then that appears to be a bigger problem than the randomness being predictable or biasable because then you no longer need a 1/3rd malicious to abort liveness, 1 person is sufficient. 
+
+%\subsubsection{Ouroboros Genesis}
+%The epoch's randomness seed is predictable, but only during the last \(\frac{1}{3}\)  of any epoch because by this point, all the required inputs into the Hash function to determine the next epoch's randomness are publicly available. 
+
+\subsection{Revealed before the current round}
+In some protocols the randomness seed is revealed before the new round starts. The revelation of the seed can give any adversary an unfair advantage of being able to identify the block proposers for the round ahead of time and DoS them. This is an important factor to analyze since it determines the strength of the adversary the protocol can defend against. 
+\\\\ 
+The analysis of Tendermint, Algorand, Dfinity, Casper FFG are as below. Ouroboros and Thunderella use the same source of randomness as Algorand while Casper CBC hasn't decided its source of randomness. An analysis of Thunderella when the protocol uses a Random Oracle instantiated as a Hash function is also included below. 
+\subsubsection{Tendermint}
+Use of a deterministic random algorithm means the randomness seed is revealed well ahead of every round and the proposer can be determined ahead of time. 
+
+\subsubsection{Algorand}
+Only once a block has been proposed is the new seed and a VRF proof to verify it publicly known. This ensures that the proposer and the randomness seed is not leaked ahead of time. This guarantee ensures that Algorand can defend against DoS attacks on proposers and is adaptively secure in a model with erasures, even with instantaneous corruption.
+\subsubsection{Dfinity} 
+The randomness seed is revealed once any honest validator has advanced to round $r$. While the time gap between an honest validator advancing and the new round officially starting is small, this gap is sufficient for an adversary with significant computational resources to identify and DoS proposers. This is the reason Dfinity can only tolerate mildly adaptive adversaries and not instantaneous corruptions.
+\subsubsection{Thunderella}
+Since the same nonce is reused as entropy during an epoch, it leads to the randomness seed being leaked ahead of the start of a new round. This enables an adversary to corrupt or DoS proposers. 
+%\subsubsection{Ouroboros Genesis}
+%Similar to Algorand, the slot proposer is only revealed at the time of block propagation when the proposer attaches their VRF proof with the block. This ensures Ouroboros Genesis can defend against DoS attacks on the proposers and like Algorand is adaptively secure in a model with erasures, even with instantaneous corruption.
+\subsubsection{Casper FFG}
+To the validator who is the current proposer the seed for the next round is known.
+\section{Results and Analysis}
+Here we present the results provided by these different protocols and an analysis of each. The aforementioned protocols will differ in their performance and in their ability to scale to more users when considering both theory and practice. We focus on finalization guarantees, scalability, a comparison of handling churn, and behavior in the case of a network partition.
+
+\begin{table*}[htp]
+ \caption{Results}
+\label{}
+\begin{tabularx}{\textwidth}{@{}l*{10}{c}c@{}}
+\toprule
+                 & Tendermint & Thunderella & Algorand & Dfinity & Ouroboros Genesis  & Caspser FFG & Casper TFG   \\ 
+\midrule
+Finality Guaranteed  & Yes  & Prob. & Prob.  & Prob. & Prob.  & Prob. & Yes    \\
+\addlinespace
+Handles Churn  & Yes  & Yes  & Yes & Yes & Yes & Yes & Yes\\ 
+\addlinespace
+Network Partition Resolution  & consistent & available & consistent  & available &  consistent &  available & consistent\\ 
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+
+\subsection{Finality Guarantees}
+Here we examine the finality guarantees each protocol provides. Different types of systems provide fundamentally different finalization assurances. Certain types of BFT-based PoS systems obtain superior finalization guarantees than chain based systems. 
+
+\subsubsection{Tendermint} Any block that has received both \(\frac{2}{3}\) or more pre-votes and pre-commits is finalized. 
+
+\subsubsection{Thunderella} Note that in Thunderella, finality is different from confirmation and is fundamentally cotingent on the realization of the underlying state replication protocol. Here, we look at confirmation, which means committment to publication in the underlying slow chain. Any maximum sequence of transactions with no gaps that has been notarized is considered fully confirmed output. If \(\frac{3}{4}\) of the fast-path committee is honest and online and the proposer is honest then valid transactions are instantly confirmed. However, this fast path confirmation is different from finality. This confirmation is considered to be optimistic finality, while transactions are only fully finalized once they are recorded on the underlying blockchain. In the case that the underlying blockchain is chain-based, the transactions are probablistically final once they are incorporated into the blockchain, but in the case that the underlying blockchain is BFT based, the transactions are finalized via the considerations of the underlying blockchain.
+
+\subsubsection{Algorand} Algorand can achieve probabalistic, not absolute, finality. As long as the attacker controls less than \(\frac{1}{3}\) of the monetary value, Algorand can guarantee that the probability for forks is negligible, as this allows the protocol to operate in strong synchrony, reaching definitive agreement on each block. In weak synchrony, Algorand may fork, but uses BA* to come to agreement on which fork to choose periodically proposing a fork for the committee to vote on. As such, transactions in Algorand are eventually finalized when the protocol returns to strong synchrony. Moreover, Algorand is able to experimentally deduce that when there is an 80\% fraction of honest users, an adversary would need 20\% of Algorand currency to create a fork.
+
+\subsubsection{Dfinity}
+In Dfinity, the probability of finality increases as the block weight on a chain increases. This assumes that for each round $r$, there is a time when we can rule out any further notarized blocks being received. At this rule out time, we can finalize round $r$ because we know that the notarized blocks already contain all the chain tips that can possibly survive beyond round $r$. There is a gaurantee of near-instant finality as under normal operation in round $r$, every transaction included in a block for round $r$ is final for an observer after two confirmations plus the maximum network roundtrip time 2$\Delta$ (or network propogation delay).  
+\subsubsection{Ouroboros Genesis} Genesis can achieve probabalistic, not absolute, finality. This is based on the chain-selection rule. The paper includes pseudocode for a simulator, which is used for proofs provided in the paper. However, there are no results or metrics that show the outcome of the simulation. 
+
+\subsubsection{Casper FFG} In Casper FFG, finality is achieved when a \(\frac{2}{3}\) supermajority of the committee, weighed by stake, sign a block (given that fewer than \(\frac{1}{3}\) of committee are Byzantine). Casper FFG is built such that it will never finalize conflicting checkpoints even if an adversary has control over the underlying blockchain's proposal mechanism. However, since FFG provides safety and the proposal mechanism provides liveness, the aforementioned adversary could prevent Casper from finalizing future checkpoints by stalling consensus.
+
+\subsubsection{Casper TFG} TFG achieves finality under validators with different fault tolerance thresholds. That is, the protocol is asynchronously safe and BFT, allowing for validators to have different fault tolerance thresholds.
+
+\subsection{Scalability Comparison}
+Scalability refers to the capability of a system to handle growth efficiently, and can be measured via latency and throughput of block and transaction finalization in blockchain protocols. The issue of scalability in blockchain systems is critical and is one that many protocols have attempted to address. Protocols that we looked at in ths paper like \cite{TFG}, \cite{FFG}, \cite{Dfinity}, \cite{Gilad}, \cite{SnowWhite} all use Proof-of-Stake as a sybil control mechanism to reduce latency and increase throughput of transactions by getting rid of the computational overhead of doing Proof-of-Work. In the case that publications contain experiments for testing the scalability of protocols, we consider their resulting latency and throughput. 
+
+The majority of protocols we consider including Tendermint, Thunderella, Dfinity, Ouroboros Genesis, Casper FFG, and Casper TFG do not publicly specify latency or throughput experiments. Algorand, did conduct several protocol experiments and provides the results in their paper. They conducted these experiments on 1,000 EC2 virtual machines simulating up to 500,000 users. Their results from this scheme convey that for all users in at least one part of a connected component in a graph, message passing time grows with the diameter of that component, which is logarithmic in the number of users. Moreover, they show that latency increases as block size increases per round and that even with 50k users and 1000 VMs an expensive round can be completed in around 100 seconds. The lowest throughput is 2Mb block in 22 seconds.  
+ 
+One way to achieve scalability in decentralized systems is to run the protocols mostly inside a randomly selected committee instead of the whole network \cite{KapronEtAl}. This pattern began with \cite{KingEtAl} in 2007, and Tendermint, Thunderella, Dfinity, Casper FFG, and Casper TFG follow suit.
+
+\subsection{Handling Churn Comparison}
+Here we compare the ways in which different protocols handle churn with regard to validators joining and leaving the network. Each of these protocols handle churn to some degree, with some allowing for more churn than others. 
+
+\subsubsection{Tendermint} Tendermint allows for rotating committees, however, as it requires locking periods, meaning that validators are bound to the system for a 2-3 month period, the amount of churn the protocol allows for is limited. Moreover, offline validators are considered timed out and are implicitly unbonded, removing them from the validator-set, unlike sleepy protocols, in which offline nodes are still considered to be part of the validator-set, allowing for greater flexibility in churn. \cite{Sleepy}
+
+\subsubsection{Thunderella} Thunderella allows for committee rotation supporting sleepy consensus in that committee are chosen such that each committee remains honest although not necessarily online until the honest chains are roughly the clock time for the current txn($c$) + 4 * security parameter($k$) ($c$ + 4$k$). As such, Thunderella supports more flexibility in churn than protocols that don't support the sleepy paradigm. 
+  
+\subsubsection{Algorand} Algorand allows for high flexibility in terms of joining the protocol.
+However, to achieve liveness in strong synchrony, it requires that at least 95\% of validators must be online. This means that leaving the protocol has a relatively low churn rate.
+
+\subsubsection{Dfinity} Dfinity allows validators to request to join and leave within $e$ + 2 epochs once the special de-registration transaction has been submitted. As such, Dfinity supports flexible churn but validators must wait a certain period of time before being able to join or leave. Moreover, offline validators are considered adversarial as validators must submit special transactions in order to leave. 
+
+\subsubsection{Ouroboros Genesis} In Genesis, validators only need the genesis block to re-build blockchain without external verification (similar to many PoW protocols). But they need to interact with external parties to synchronise with the system and continue to participate. Validators must complete a registration process and once a validator has completed the process they can engage in the protocol. For validators to leave, they must go through a similar deregistration process. As such, Genesis allows for flexibility in churn depending on how long the registration and deregistration processes take. 
+
+\subsubsection{Casper FFG} Casper FFG allows for validators to join and leave the protocol within a certain time period. Validators that deposit in dynasty $d$ are added in dynasty $d$ + 2 and validators that exit in dynasty $d$ are removed in dynasty $d$ + 2. When validators choose to leave, their funds are locked up for about 3 - 4 months. FFG is similar to Tendermint in that it allows for dynamic churn within the constraints of lock up periods. 
+
+\subsubsection{Casper TFG} TFG handles validator-set rotation with dynamically changing sets of consensus forming nodes and/or their weights in the case that the validator selection method adds a weight map to each block that specifies the validator-set for the fork choice from among its children. This allows for the rotation of validator-sets without requiring that the rotation is finalized. As such, TFG handles churn in that a different validator-set is allowed per fork choice. 
+
+\subsection{Network Partition}
+Here we consider how the protocol reacts to a network partition, prioritizing either consistency or availability. 
+
+\subsubsection{Tendermint} In the event of a network partition, Tendermint prioritizes consistency over availibility. That is, no additional blocks will be confirmed or finalized until the partition is resolved. 
+
+\subsubsection{Thunderella} In the event of a network partition, the fast path conditions fail to be upheld and the protocol would fall back to the underlying blockchain, upholding the underlying blockchain's partition resolution conditions. As Thunderella falls back to a synchronous underlying blockchain, it prioritizes availability as synchronous blockchains are not consistent in the case of a network partition.   
+
+\subsubsection{Algorand}
+In the event of a network partition, Algorand ensures safety, implying that it prioritizes consistency over availability. Indeed, Algorand prefers to produce empty blocks generating unproductive liveness, rather than sacrificing on safety.
+
+\subsubsection{Dfinity} Network partitions are implicitly detectable by the protocol, since if the network splits in two halves of about the same size, this will automatically cause the random beacon to pause within a few blocks so that none of the sides can continue, prioritizing consistency. The random beacon will automatically resume once the network reconnects. If the network splits in a way that one component is larger than half of the network, the protocol may continue in that one large component but will pause in all other components. This assumes that a group is a good sampling of the network. 
+
+\subsubsection{Ouroboros Genesis} The Ouoroboros paper series does not explicitly mention how the protocol reacts in the face of a partition, however, a node that is out of sync with the protocol will be considered adversarial until at least some function of $\Delta$ rounds has passed (where $\Delta$ refers to the propogation delay). Thus, it seems as though the protocol prioritizes consistency. 
+
+\subsubsection{Casper FFG} In the event of a network partition, FFG drains non-active users of their stake over time in order to recovery liveness. FFG prioritizes consistency in that it does not allow for checkpoint finalization without a \(\frac{2}{3}\) supermajority of validators or in the case when the underlying proposal mechanism is taken over by an adversary. If a partition violates the former condition, finalization will not occur. 
+
+\subsubsection{Casper TFG} In the event of a network partition, Casper TFG prioritizes availability, however, validators are unable to detect safety on blocks made during a partition thus there is the chance of reversion. Safety in TFG is dependent on the maximum length it takes for the safety oracle to determine the estimate as safe. In asynchrony, this is unbounded, but with any liveness strategy that works in at least a partially synchronous network, it is bounded.      
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that the IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+% However, the Computer Society has been known to put floats at the bottom.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% the IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One and Two\\
+%\hline
+%Three and Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+\section{Conclusion}
+
+Given the breadth of knowledge required for creating and deploying alternative consensus protocols, it is imperative to have a structured framework to objectively examine the characteristics of each. We have provided a clear framework in which to compare these consensus protocols.  Generalizing these protocols in a way to systematically compare their properties, we distinguish their most critical features in proposer and committee election including the corresponding randomness protocols, block propagation, and block finalization. We consider the environments, and models in which these protocols operate, looking at their network, adversarial, and economic assumptions. We also provide an evaluation of the results of these protocols in their finalization guarantees, scalability capabilities, ability to handle churn, and network partition resolution. This scheme can be used to evaluate the security parameters of a single system, and in turn, compare those parameters across various systems. 
+
+\section{Future Work}
+There remains substantial research to be done in the alternative consensus space. Many of these alternative consensus protocols provide particular guarantees, but still stand to grow stronger. In Thunderella, with greater than \(\frac{1}{3}\) malicious actors, the protocol essentially always falls to the slow chain. In Algorand, if the protocol falls into elongated periods of asynchrony, it simply produces null blocks. In Dfinity, asynchrony could ensure that no block is ever truly finalized. In Tendermint, the deterministic round robin scheme may be vulnerable in practice because revealing the randomness source ahead of time enables DoS attacks on the validators. And both Casper FFG and Casper TFG require formal protocol specifications in multiple areas of their schemes. 
+
+Moreover, as pointed out in 6.3, there is a lack of research into the economics and game theory of these systems, particularly in incentive structures. This is a crucial piece to optimally parametrize these protocols and create sustainable blockchains.
+
+Once many of these protocols are deployed in practice, it would be valuable to revisit these analyses and understand the implications of practical implementation versus the theoretical formation of these protocols.
+
+Further, as the space develops, it is fundamentally important to maintain high standards of technical rigor in creating these complex systems, which is made possible by having a common, comprehensive framework within which to evaluate these systems. We look forward to seeing continued work in these kind of analyses.
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+
+% use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
+The authors would like to thank Alberto Sonnino of UCL, Ethan Buchman and Sunny Aggarwal of Tendermint, Vlad Zamfir, Nate Rush, and Vitalik Buterin of the Ethereum Foundation, Professors Elaine Shi and Rafael Pass of Cornell and Thunder, and Aditya Sripal from FourthState.
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{Bitcoin}
+ Nakamoto, Satoshi. "Bitcoin: A peer-to-peer electronic cash system." (2008).
+ 
+ \bibitem{Ethereum}
+ Wood, Gavin. "Ethereum: A secure decentralised generalised transaction ledger." Ethereum project yellow paper 151 (2014): 1-32.
+ 
+\bibitem{AlgoGT} N. Nisan, T. Roughgarden, E. Tardos, V. V. Vazirani, Algorithmic Game Theory (PDF), Cambridge, UK: Cambridge University Press: 2007.
+
+\bibitem{Algorand}
+Gilad, Yossi, et al. "Algorand: Scaling byzantine agreements for cryptocurrencies." Proceedings of the 26th Symposium on Operating Systems Principles. ACM, 2017.
+
+\bibitem{AttiyaWelch} H. Attiya and J. Welch. \emph{Distributed Computing: Fundamentals, Simulations, and Advanced Topics.} Hoboken, NJ: Wiley, 2004.
+
+\bibitem{Attiya&Lynch} H. Attiya and N. A. Lynch, "Time bounds for real-time process control in the presence of timing uncertainty," \emph{[1989] Proceedings. Real-Time Systems Symposium, 5-7 Dec. 1989,  Santa Monica, CA, USA,} IEEE: 1989.
+
+\bibitem{Bano} S. Bano, A. Sonnino, M. Al-Bassam, S. Azouvi, P. McCorry, S. Meiklejohn, and G. Danezis. "SoK: Consensus in the Age of Blockchains," arXiv: 2017.
+
+\bibitem{BitcoinFAQ} “Frequently Asked Questions.” Bitcoin - Open Source P2P Money.
+
+\bibitem{Bonneau} J. Bonneau, A. Miller, J. Clark, A. Narayanan, J. A. Kroll, and E. W. Felten, "SoK: Research Perspectives and Challenges for Bitcoin and Cryptocurrencies," \emph{IEEE Symposium on Security and Privacy, San Jose, CA, USA 17-21 May 2015}, 2015.
+
+\bibitem{BonehEtAl} D. Boneh, B. Lynn, H. Shacham, “Short Signatures from the Weil Pairing,” Journal of Cryptology, vol. 17, no. 4, 2004.
+
+\bibitem{Buchman} E. Buchman, "Tendermint: Byzantine Fault Tolerance in the Age of Blockchains," University of Guelph: 2016.
+
+\bibitem{CromanEtAl} K. Croman, C. Decker, I. Eyal, A. E. Gencer, A. Juels, A. Kosba, A. Miller, P. Saxena, E. Shi, and E. Gun. On Scaling Decentralized Blockchains, in \emph{International Conference on Financial Cryptography and Data Security, 2016}, Clark J., Meiklejohn S., Ryan P., Wallach D., Brenner M., Rohloff K. (eds) Financial Cryptography and Data Security. FC 2016., vol 9604. pp 106-125. Springer: Berlin, Heidelberg.
+
+\bibitem{Dfinity}  T. Hanke, M. Mohavedi, D. Williams, DFINITY Technology Overview Series: Consensus System, DFINITY Stiftung, 2017.
+
+\bibitem{DworkEtAl}
+C. Dwork, N. Lynch, and L. Stockmeyer, “Consensus in the Presence of Partial Synchrony,” Journal of the Assoc. for Computing Machinery, pp. 288-323, Apr. 1988.
+
+\bibitem{EthPoSFAQ} Ethereum Proof of Stake FAQ, “Ethereum/Wiki.” GitHub.
+
+\bibitem{FLP} M. Fisher, N. Lynch, M. Patterson. "Impossibility of Distributed Consensus with One Faulty Process," Journal of the Assoc. for Computing Machinery, Vol. 32, No. 2, April 1985, pp. 374-382.
+
+\bibitem{fruitchains}R. Pass and E. Shi, "The Sleepy Model of Consensus. Cornell, 2017.
+
+\bibitem{Genesis} C. Badertscher, P. Gazi, A Kiayias, A Russell, and V. Zikas, Ouroboros Genesis: Composable Proof-of-Stake Blockchains with Dynamic Availability, IOHK: 2018.
+
+\bibitem{Gervais}
+ Gervais, Arthur, et al. "On the security and performance of proof of work blockchains." Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security. ACM, 2016.
+
+\bibitem{GilbertLynch} S. Gilbert and N. Lynch. “Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services.” ACM SIGACT News, vol. 33, no. 2, 2002, p. 51.
+
+\bibitem{GodfreyEtAl} B. P. Godfrey et al. "Minimizing Churn in Distributed Systems." SIGCOMM '06 Oct. 2006, p.147-158.
+
+\bibitem{LamportMultiprocess} L. Lamport, "Proving the Correctness of Multiprocess Programs," \emph{IEEE Transactions on Software Engineering}, pp. 125-143, 1977.
+
+\bibitem{Mahnush} M. Zamadi, M. Mohavedi, "Crypto Reference." todo: how improve
+
+\bibitem{MicaliEtAl} S. Micali, M. Rabin, and S. Vadhan. "Verifiable Random Functions." \emph{40th Annual Symposium on Foundations of Computer Science, New York City, NY, USA, 17-19 October 1999}, 1999. 
+
+\bibitem{Ouroboros}
+ Kiayias, Aggelos, et al. "Ouroboros: A provably secure proof-of-stake blockchain protocol." Annual International Cryptology Conference. Springer, Cham, 2017.
+
+
+\bibitem{PapaD} C. Papadimitriou. “CS 294 Topics in Algorithmic Game Theory: Approximate Nash Equilibria.” Berkeley EECS, Sept. 2011.
+
+\bibitem{ParameterizingCasper} V. Buterin, Parameterizing Casper, 2017.
+
+\bibitem{Paxos}
+Lamport, Leslie. "Paxos made simple." ACM Sigact News 32.4 (2001): 18-25.
+
+
+\bibitem{SatoshiWhitepaper} S. Nakamoto. “Bitcoin: A Peer-to-Peer Electronic Cash System.” Bitcoin - Open Source P2P Money, 2008.
+
+\bibitem{Raft}
+Agrawal, Prathima. "RAFT: A Recursive Algorithm for Fault Tolerance." ICPP. 1985.
+
+\bibitem{Rethinking} R. Pass, and E. Shi. "Rethinking Large-Scale Consensus, in \emph{2017 IEEE 30th Computer Security Foundations Symposium (CSF), Santa Barbara, CA, USA, 21-25 August, 2017}, IEEE: 2017.
+
+\bibitem{SnowWhite} P. Daian, R. Pass, and E. Shi, "Snow White: Robustly Reconfigurable Consensus and Applications to Provably Secure Proofs of Stake." Cornell, 2016.
+
+\bibitem{Sleepy} R. Pass and E. Shi, "The Sleepy Model of Consensus. Cornell, 2017.
+
+\bibitem{Vukolic} M. Vukolic. The Quest for Scalable Blockchain Fabric: Proof-of-Work vs. BFT Replication. In International Workshop on Open Problems in Network Security, pages 112-125. Springer, 2015.
+
+\bibitem{Zohar} A. Zohar. Securing and Scaling Cryptocurrencies. In Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence, IJCAI-17, pages 5161-5165, 2017
+
+\bibitem{ItkisXie} G. Itkis and P. Xie. “Generalized Key-Evolving Signature Schemes or How to Foil an Armed Adversary,” Applied Cryptography and Network Security 2003, Lecture Notes in Computer Science 2846, pp. 151-168, 2003.
+
+\bibitem{Thunderella} R. Pass and E. Shi, "Thunderella," Cornell: 2017.
+
+\bibitem{Tendermint}
+ Kwon, Jae. "Tendermint: Consensus without mining." Draft v. 0.6, fall (2014).
+
+\bibitem{Gilad}
+Y. Gilad, R. Hemo, S. Micali, G. Vlachos, N. Zeldovich, "Algorand: Scaling Byzantine Agreements for Cryptocurrencies," MIT CSAIL: 2017.
+
+\bibitem{FFG}
+V. Buterin and V. Griffith, "Casper the Friendly Finality Gadget", arXiv: 2017.
+
+\bibitem{TFG} V. Zamfir, Casper the Friendly Ghost: A 'Correct by Construction' Blockchain Consensus Protocol," Ethereum Foundation Github: 2017.
+
+\bibitem{BLS} D. Boneh, Ben Lynn and Hovav Shacham (2004). "Short Signatures from the Weil Pairing". Journal of Cryptology. 17: 297–319. doi:10.1007/s00145-004-0314-9.
+
+\bibitem{JF-DKG} P. Feldman, A practical scheme for non-interactive verifiable secret sharing. IEEE Symposium on Foundations of Computer Science, pages 427--437. IEEE, 1987. doi:10.1109/SFCS.1987.4
+
+\bibitem{KapronEtAl}
+B. Kapron, D. Kempe, V. King, J. Saia, and V. Sanwalani, "Fast Asynchronous Byzantine Agreement and Leader Election with Full Information" by In Symposium on Discrete Algorithms (SODA), 2008 ( pdf) Invited submission to "Transactions on Algorithms" best papers of SODA 2008. todo: this
+
+\bibitem{KingEtAl}
+V. King, J. Saia, V. Sanwalani, and E. Vee, "Scalable Leader Election", in \emph{Symposium on Discrete Algorithms}, 2006.
+
+\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+
+% if you will not have a photo at all:
+
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+% that's all folks
+\end{document}
+
+
