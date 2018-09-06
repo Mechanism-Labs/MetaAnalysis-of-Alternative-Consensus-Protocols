@@ -1078,12 +1078,16 @@ H$^{nonce}(pk, q) < D_p$ where H is the Hash function which is used as the Rando
 If the adversary proposes a block, she can bias the nonce used to generate entropy for the hash function of the next round, thus biasing the proposer elected in the next block. However, to mitigate the biasability of the randomness scheme, the same nonce is used in the Hash function to select proposers for $r$ rounds rather than to merely select the next proposer. This makes it computationally harder for an adversary to brute force a nonce that will enable them to be the proposer for the next $r$ rounds. While this strategy guarantees only a polynomial security loss, it comes with a predictability trade-off discussed later. This scheme results in being able to tolerate only a slow adaptive adversary
 \\\\
 In the above algorithm, when the same nonce is reused to seed the Hash function it leads to an adversary being able to predict the proposers ahead of time. 
-%\subsubsection{Ouroboros Genesis}
-%The randomness generation scheme to select proposers that Ouroboros uses is similar to what Algorand uses with a VRF. In addition to using randomness for proposer election, Ouroboros also uses a randomness seed at every Epoch. 
-%\\\\
-%The randomness seed is updated at the beginning of each epoch; the randomness seed of the epoch is derived from hashing the previous epoch's randomness with the current epoch number and the output of certain values from the first 2/3 blocks of the previous epoch. 
-%\\\\ 
-%Ouroboros' randomness generation is biasable because an adversary can generate the right values to place in the first 2/3 blocks of the current epoch in order to bias the next epoch's randomness. This is commonly referred to as a \emph{stake grinding} attack and would require a large amount of computation but nevertheless is possible.  Given their novel chain selection rule, it is possible that an adversary that successfully biases the epoch randomness would attempt to elect himself multiple times in a future epoch, thereby allowing him to carry out other attacks like a \emph{selfish mining attack} wherein he can create a personal longest chain that the rest of the network is unaware of (to fork the blockchain at a recent point of time) or possibly create multiple blocks in a short amount of time to add density to his chain (to fork the blockchain at an old point of time).%
+\subsubsection{Ouroboros Genesis}
+Ouroboros Genesis selects proposers by employing a random generation scheme that uses a VRF. Each user in the network locally evaluates the VRF using their secret key and the inputs (current slot index and epoch randomness). If the output of the VRF is less than some threshold T, then the user is eligible to be leader. The user then attaches the  output and proof (both generated from the VRF) to the new block that is being proposed before being propagated to the network.
+\\\\
+The randomness seed is updated at the beginning of each epoch; the randomness seed of the epoch is derived from hashing the previous epoch's randomness, the current epoch number, and the output of certain values from the first 2/3 blocks of the previous epoch. It follows this equation:
+$ \eta_{ep} \leftarrow H(\eta_{ep-1} || ep || v) $
+\\\\ 
+Ouroboros' randomness generation is biasable because an adversary can generate the right values to place in the first 2/3 blocks of the current epoch in order to bias the next epoch's randomness. This is commonly referred to as a \emph{stake grinding} attack and would require a large amount of computation but nevertheless is possible.  Given their novel chain selection rule, it is possible that an adversary that successfully biases the epoch randomness would attempt to elect himself multiple times in a future epoch, thereby allowing him to carry out other attacks like a \emph{selfish mining attack} wherein he can create a personal longest chain that the rest of the network is unaware of (to fork the blockchain at a recent point of time) or possibly create multiple blocks in a short amount of time to add density to his chain (to fork the blockchain at an old point of time).
+\\\\
+The epoch's randomness seed is predictable, but only during the last \(\frac{1}{3}\)  of any epoch because by this point, all the required inputs into the Hash function to determine the next epoch's randomness are publicly available.
+
 \subsubsection{Casper FFG}
 The randao scheme that Casper FFG plans to use is dependent on the algorithm below: 
 \\\\
@@ -1092,9 +1096,6 @@ $S$ is the seed the validator commits to. $R := R \oplus $ Pre-image of the inne
 At a round, a validator can either make a block or abort. 
 \\\\
 If in the fall back mechanism no randomness is generated then that appears to be a bigger problem than the randomness being predictable or biasable because then you no longer need a 1/3rd malicious to abort liveness, 1 person is sufficient. 
-
-%\subsubsection{Ouroboros Genesis}
-%The epoch's randomness seed is predictable, but only during the last \(\frac{1}{3}\)  of any epoch because by this point, all the required inputs into the Hash function to determine the next epoch's randomness are publicly available. 
 
 \subsection{Revealed before the current round}
 In some protocols the randomness seed is revealed before the new round starts. The revelation of the seed can give any adversary an unfair advantage of being able to identify the block proposers for the round ahead of time and DoS them. This is an important factor to analyze since it determines the strength of the adversary the protocol can defend against. 
@@ -1109,8 +1110,8 @@ Only once a block has been proposed is the new seed and a VRF proof to verify it
 The randomness seed is revealed once any honest validator has advanced to round $r$. While the time gap between an honest validator advancing and the new round officially starting is small, this gap is sufficient for an adversary with significant computational resources to identify and DoS proposers. This is the reason Dfinity can only tolerate mildly adaptive adversaries and not instantaneous corruptions.
 \subsubsection{Thunderella}
 Since the same nonce is reused as entropy during an epoch, it leads to the randomness seed being leaked ahead of the start of a new round. This enables an adversary to corrupt or DoS proposers. 
-%\subsubsection{Ouroboros Genesis}
-%Similar to Algorand, the slot proposer is only revealed at the time of block propagation when the proposer attaches their VRF proof with the block. This ensures Ouroboros Genesis can defend against DoS attacks on the proposers and like Algorand is adaptively secure in a model with erasures, even with instantaneous corruption.
+\subsubsection{Ouroboros Genesis}
+The slot proposer is only revealed at the time of block propagation when the proposer attaches their VRF output and proof with the block. This ensures Ouroboros Genesis can defend against DoS attacks on the proposers and is adaptively secure in a model with erasures, even with instantaneous corruption.
 \subsubsection{Casper FFG}
 To the validator who is the current proposer the seed for the next round is known.
 \section{Results and Analysis}
